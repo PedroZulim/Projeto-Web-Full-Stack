@@ -2,9 +2,9 @@ import React from 'react';
 
 function Footer() {
   return (
-    <footer>
-      <p>&copy; 2023 Meu Site</p>
-    </footer>
+    <FooterWrapper>
+      <p>Rodapé do seu aplicativo</p>
+    </FooterWrapper>
   );
 }
 

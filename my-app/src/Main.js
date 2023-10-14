@@ -2,10 +2,10 @@ import React from 'react';
 
 function Main() {
   return (
-    <MainWrapper>
+    <div className='Main'>
       <h1>Conteúdo Principal</h1>
       <p>Este é o conteúdo principal do seu aplicativo.</p>
-    </MainWrapper>
+    </div>
   );
 }
 

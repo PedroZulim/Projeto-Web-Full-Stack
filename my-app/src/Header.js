@@ -2,8 +2,9 @@ import React from 'react';
 
 function Header() {
   return (
-    <HeaderWrapper>
-    </HeaderWrapper>
+    <div className='Header'>
+      <h1>Meu Cabeçalho</h1>
+    </div>
   );
 }
 

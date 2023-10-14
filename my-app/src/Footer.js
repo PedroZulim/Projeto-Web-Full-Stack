@@ -2,9 +2,9 @@ import React from 'react';
 
 function Footer() {
   return (
-    <FooterWrapper>
+    <div className='Footer'>
       <p>Rodapé do seu aplicativo</p>
-    </FooterWrapper>
+    </div>
   );
 }
 

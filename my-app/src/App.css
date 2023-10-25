@@ -1,11 +1,14 @@
 .App {
   text-align: center;
+  background-color: #ffffff;
 }
 
 .Header {
   background-color: #333;
   color: #fff;
-  padding: 20px;
+  padding-top: 20px;
+  height: 30px;
+  padding-bottom: 20px;
 }
 
 .Main {
@@ -17,4 +20,21 @@
   background-color: #333;
   color: #fff;
   padding: 20px;
+}
+
+.LogoHeader{
+  position: absolute;
+  left: 20%;
+  
+}
+
+.button{
+  position: relative;
+  float: inline-start;
+  padding-inline-start: 100px;
+  left: 40%;
+}
+
+.buttons-header{
+  padding: auto;
 }

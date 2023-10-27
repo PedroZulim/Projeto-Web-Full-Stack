@@ -15,7 +15,7 @@ function Header() {
                 <Link to="/spacex/ships" className="nav-link"> Ships</Link>
               </li>
               <li className="nav-item">
-                <Link to="/" className="nav-link"> About</Link>
+                <Link to="/About" className="nav-link"> About</Link>
               </li>
 
             </ul>

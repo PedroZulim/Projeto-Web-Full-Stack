@@ -81,10 +81,7 @@ function DetalheRockets() {
 					<div className='row'>
 						<div className='col-3'>
 							<img src={imagemPagina} width='300' height='300'></img>
-
-							<GetImage></GetImage>
-							{/*<img src={imagemUrl1.current} width="300" height="300" alt="Imagem 1"/>*/}
-							{/*<img src={imagemUrl2.current} width="300" height="300" alt="Imagem 2"/>*/}
+							<GetImage/>
 						</div>
 						<div className='col-9'>
 							<div className="col-12">
@@ -92,13 +89,16 @@ function DetalheRockets() {
 								<textarea className="form-control" id="description" disabled={disableFields}
 										  value={rocket.description} rows='3'></textarea>
 							</div>
-							<div className="col-3">
+							<div className="col-3 mt-1">
 								<label htmlFor="first_flight" className="form-label">Primeiro Voo </label>
 								<input type="date" className="form-control" id="first_flight" disabled={disableFields}
 									   value={rocket.first_flight}/>
 							</div>
-
-							<p>{campos}</p>
+							<div className="col-3 mt-1">
+								<label htmlFor="height" className="form-label">height</label>
+								<input type="text" className="form-control" id="height " disabled={disableFields}
+									   value={rocket.height.meters}/>
+							</div>
 						</div>
 
 					</div>
@@ -120,16 +120,7 @@ function DetalheRockets() {
 				<div className='card-body'>
 					<div className='row'>
 						{imagens}
-
-
-						{/*<div className='col-4'>*/}
-						{/*	<img src={imagemUrl1} width='300' height='300'></img>*/}
-						{/*</div>*/}
-						{/*<div className='col-4'>*/}
-						{/*	<img src={imagemUrl2} width='300' height='300'></img>*/}
-						{/*</div>*/}
 					</div>
-
 
 				</div>
 				<div className='card-footer'> FOOTTER

@@ -17,9 +17,9 @@ function Header() {
               <li className="nav-item">
                 <Link to="/About" className="nav-link"> About</Link>
               </li>
-
             </ul>
           </div>
+          <img src="SpaceX_Logo_Black.png" alt="Descrição da imagem" width="250" height="40" />
         </div>
       </nav>
   )

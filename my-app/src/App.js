@@ -1,18 +1,13 @@
 import React from 'react';
-import './App.css';
-import Header from './Header';
-import Main from './Main';
-import Footer from './Footer';
+import Layout from "./template/Layout";
 
 
 function App() {
-  return (
-    <div className="App">
-      <Header />
-      <Main />
-      <Footer />
-    </div>
-  );
+    return (
+        <div className="container">
+            <Layout />
+        </div>
+    );
 }
 
 export default App;

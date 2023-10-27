@@ -22,25 +22,6 @@ function Header() {
           </div>
         </div>
       </nav>
-      // <div className='Header'>
-      //
-      // 	<div className='LogoHeader'>
-      // 		<img src="Logo-Header.png" alt='Logo SerMais'/>
-      // 	</div>
-      // 	<div className='buttons-header'>
-      // 		<div className='button'>
-      // 			<button><Link to="/">Home</Link></button>
-      // 		</div>
-      // 		<div className='button'>
-      // 			<button><Link to="/about">About</Link></button>
-      // 		</div>
-      // 		<div className='button'>
-      // 			<button><Link to="/spacex/ships">Ships</Link></button>
-      // 		</div>
-      //
-      // 	</div>
-      // </div>
-
   )
       ;
 }

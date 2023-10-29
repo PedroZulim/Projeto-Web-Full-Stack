@@ -16,7 +16,7 @@ const Layout = () => {
             <ContainerBody>
                 <AppRoutes/>
             </ContainerBody>
-            <Footer/>
+            {/*<Footer/>*/}
         </BrowserRouter>
     )
 };

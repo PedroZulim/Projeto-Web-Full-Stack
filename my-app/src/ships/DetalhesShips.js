@@ -183,11 +183,11 @@ function DetalhesShips() {
                                 </div>
                             </div>
                             <div className='row mt-2'>
-                                <div className="col-3">
-                                    <label htmlFor="active" className="form-label">Active</label>
-                                    <input type="text" className="form-control" id="active" disabled={disableFields}
-                                           value={ship.active ? 'Sim' : 'Não'}/>
-                                </div>
+                                {/*<div className="col-3">*/}
+                                {/*    <label htmlFor="active" className="form-label">Active</label>*/}
+                                {/*    <input type="text" className="form-control" id="active" disabled={disableFields}*/}
+                                {/*           value={ship.active ? 'Sim' : 'Não'}/>*/}
+                                {/*</div>*/}
                                 <div className="col-3">
                                     <label htmlFor="launches" className="form-label">Launches</label>
                                     <input type="text" className="form-control" id="launches" disabled={disableFields}

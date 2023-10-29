@@ -5,7 +5,7 @@ function Home() {
         <div className='Main'>
             <section id="hero" className="bg-dark text-light text-center py-5">
                 <div className="container">
-                    <h1 className="display-4">About SpaceX</h1>
+                    <h1 className="display-4">Home SpaceX</h1>
                     <p className="lead">SpaceX is a leading aerospace manufacturer and space transportation company.</p>
                 </div>
             </section>

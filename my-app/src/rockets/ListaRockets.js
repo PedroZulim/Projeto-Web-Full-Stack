@@ -26,7 +26,7 @@ function ListaRockets() {
 			<div className='card-header'>
 				<h1>SpaceX Rockets List</h1>
 				<span className='float-end'>
-					{rocketsTotal.length} Total de registos
+					{rocketsTotal.length} Total Records
 				</span>
 			</div>
 
@@ -34,10 +34,10 @@ function ListaRockets() {
 				<table className="table table-striped table-hover">
 					<thead>
 						<tr>
-							<th width='150px'>Nome</th>
-							<th>Descrição</th>
-							<th className='col-1'>Primeiro voo</th>
-							<th>Imagem</th>
+							<th width='150px'>Name</th>
+							<th>Description</th>
+							<th className='col-1'>First Flight</th>
+							<th>Image</th>
 						</tr>
 					</thead>
 					<tbody>

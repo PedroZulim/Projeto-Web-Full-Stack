@@ -43,22 +43,22 @@ function DetalhesShips() {
             <div className="card card-default">
                 <div className='card-header'>
                     <h2>{ship.name}
-                        <small>{ship.active ? <span className="badge bg-success m-1">Ativo</span>
-                            : <span className="badge bg-danger m-1">Inativo</span>
+                        <small>{ship.active ? <span className="badge bg-success m-1">Ative</span>
+                            : <span className="badge bg-danger m-1">Inactive</span>
                         }
                         </small>
                         <span className="float-end">
 							<button className="btn btn-sm btn-warning m-1" onClick={() => ativarDesativarForm()}>
-								Editar
+								Edit
 							</button>
 
 							<button className="btn btn-sm btn-danger m-1" onClick={() => setShowModal(true)}>
-								Remover
+								Remove
 							</button>
 
 							<Link to="/spacex/ships" className="m-1">
 								<button className="btn btn-sm btn-info">
-									Voltar
+									Back
 								</button>
 							</Link>
 						</span>

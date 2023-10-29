@@ -8,17 +8,17 @@ const ConfirmeModal = ({ onClose}) => {
 			<div className="modal-dialog">
 				<div className="modal-content">
 					<div className="modal-header">
-						<h5 className="modal-title">Confirmação de remoção</h5>
+						<h5 className="modal-title">Removal Confirmation</h5>
 						<button type="button" className="btn-close" onClick={() => onClose()}
 								aria-label="Close"></button>
 					</div>
 					<div className="modal-body">
-						<p>Tem certeza que deseja remover?</p>
+						<p>Are you sure you want to remove?</p>
 					</div>
 					<div className="modal-footer">
-						<button type="button" className="btn btn-primary" onClick={() => onClose()}>Confirmar
+						<button type="button" className="btn btn-primary" onClick={() => onClose()}>Confirm
 						</button>
-						<button type="button" className="btn btn-warning" onClick={() => onClose()}>Cancelar</button>
+						<button type="button" className="btn btn-warning" onClick={() => onClose()}>Cancel</button>
 					</div>
 				</div>
 			</div>

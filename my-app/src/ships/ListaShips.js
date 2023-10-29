@@ -23,10 +23,10 @@ function ListaShips() {
                 <table className="table table-striped table-hover">
                     <thead>
                     <tr>
-                        <th>Nome</th>
-                        <th>Tipo</th>
-                        <th>Ano de Construção</th>
-                        <th>Imagem</th>
+                        <th>Name</th>
+                        <th>Type</th>
+                        <th>Year of Construction</th>
+                        <th>Image</th>
                     </tr>
                     </thead>
                     <tbody>
@@ -48,7 +48,7 @@ function ListaShips() {
                 </table>
             </div>
 
-            <div className='card-footer'> {ships.length} Total de registo
+            <div className='card-footer'> {ships.length} Total Records
             </div>
 
         </div>

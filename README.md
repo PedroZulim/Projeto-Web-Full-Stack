@@ -1,7 +1,7 @@
 ## AS64A - Programação Web Fullstack
 Professor: Willian Massami Watanabe
 
-Aluno: Pedro Henrique de Souza Zulim
+Aluno: Pedro Henrique de Souza Zulim RA:2142481
 
 ### 1. Descrição do projeto
 O Projeto 1 da disciplina Programação Web Fullstack trata-se do desenvolvimento da camada Frontend de uma aplicação web, utilizando a biblioteca React.js. A aplicação deve ser desenvolvida seguindo o conceito de SPA - Single Page Application, em que todas as funcionalidades serão implementadas em uma única página HTML, sem a necessidade de redirecionamento entre páginas para atualização da interface.

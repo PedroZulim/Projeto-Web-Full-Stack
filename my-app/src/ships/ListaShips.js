@@ -16,7 +16,7 @@ function ListaShips() {
     return (
         <div className="card card-default">
             <div className='card-header'>
-                <h1>Lista de Embarcações da SpaceX</h1>
+                <h1>SpaceX Ships List</h1>
             </div>
 
             <div className='card-body'>

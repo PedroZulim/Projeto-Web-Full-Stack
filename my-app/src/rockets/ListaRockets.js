@@ -24,7 +24,7 @@ function ListaRockets() {
 	return (
 		<div className="card card-default">
 			<div className='card-header'>
-				<h1>Lista de Naves Espaciais da SpaceX</h1>
+				<h1>SpaceX Rockets List</h1>
 				<span className='float-end'>
 					{rocketsTotal.length} Total de registos
 				</span>

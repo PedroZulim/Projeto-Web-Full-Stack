@@ -5,7 +5,7 @@ import {Link, useNavigate, useParams} from "react-router-dom";
 import GetImage from "./GetImage";
 import {createPortal} from "react-dom";
 import ConfirmeModal from "../modal/ConfirmeModal";
-import Footer from "../template/Footer"
+import FooterDetails from "../template/FooterDetails";
 
 const BotaoVoltar = styled.button`
   background-color: #007bff;
@@ -341,7 +341,7 @@ function DetalheRockets() {
                     </div>
                 </div>
                 <div className="card-footer">
-                    <Footer/>
+                    <FooterDetails/>
                 </div>
 
             </div>
@@ -360,7 +360,7 @@ function DetalheRockets() {
 
                 </div>
                 <div className="card-footer">
-                    <Footer/>
+                    <FooterDetails/>
                 </div>
 
             </div>

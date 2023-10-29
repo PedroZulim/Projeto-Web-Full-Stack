@@ -2,9 +2,9 @@ import GetAPI from "../customHook/GetAPI";
 import styled from "styled-components";
 import React, {useEffect, useRef, useState} from 'react';
 import {Link, useNavigate, useParams} from 'react-router-dom';
-import Footer from "../template/Footer";
 import {createPortal} from "react-dom";
 import ConfirmeModal from "../modal/ConfirmeModal";
+import FooterDetails from "../template/FooterDetails";
 
 const BotaoVoltar = styled.button`
   background-color: #007bff;
@@ -68,7 +68,7 @@ function DetalhesShips() {
                 <div className='card-body'>
                     <div className="row">
                         <div className="col-3 well">
-                            <img src={ship.image} width='300' height='300' className="m-2"></img>>
+                            <img src={ship.image} width='300' height='300' className="m-2"></img>
                         </div>
                         <div className="col-9">
                             <div className='row'>
@@ -203,7 +203,7 @@ function DetalhesShips() {
                     </div>
                 </div>
                 <div className='card-footer'>
-                    <Footer/>
+                    <FooterDetails/>
                 </div>
             </div>
             {/*<p>{campos}</p>*/}

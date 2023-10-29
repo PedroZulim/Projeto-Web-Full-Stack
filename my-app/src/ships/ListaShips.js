@@ -23,10 +23,8 @@ function ListaShips() {
                 <table className="table table-striped table-hover">
                     <thead>
                     <tr>
-                        <th>Ações</th>
                         <th>Nome</th>
                         <th>Tipo</th>
-                        <th>Ativo</th>
                         <th>Ano de Construção</th>
                         <th>Imagem</th>
                     </tr>
@@ -36,12 +34,10 @@ function ListaShips() {
                         <tr key={ship.id}>
                             <td>
                                 <Link to={ship.id}>
-                                    <button>Detalhes</button>
+                                    {ship.name}
                                 </Link>
                             </td>
-                            <td>{ship.name}</td>
                             <td>{ship.type}</td>
-                            <td>{ship.active ? 'Sim' : 'Não'}</td>
                             <td>{ship.year_built}</td>
                             <td>
                                 <img src={ship.image} width='100' height='100'></img>

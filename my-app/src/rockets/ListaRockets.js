@@ -46,7 +46,8 @@ function ListaRockets() {
 								<td>
 									<Link to={rocket.id}>
 										{rocket.name}
-									</Link></td>
+									</Link>
+								</td>
 								<td>{rocket.description}</td>
 								<td>{rocket.first_flight}</td>
 								<td>

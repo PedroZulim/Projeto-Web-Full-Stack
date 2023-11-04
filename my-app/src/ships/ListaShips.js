@@ -1,7 +1,8 @@
 import GetAPI from "../customHook/GetAPI";
 import styled from "styled-components";
 import {Link} from "react-router-dom";
-import React from "react";
+import React, {useEffect, useMemo, useRef, useState} from "react";
+import FooterDetails from "../template/FooterDetails";
 
 const BotaoDetalhe = styled.button`
   background-color: #007bff;
@@ -12,7 +13,56 @@ const BotaoDetalhe = styled.button`
 `;
 
 function ListaShips() {
-    const [ships] = GetAPI('https://api.spacexdata.com/v4/ships');
+    const [controleAcoes, setControleAcoes] = useState([]);
+    const [totalRegistro, setTotalRegistro] = useState([]);
+
+    const [shipsLista] = GetAPI('https://api.spacexdata.com/v4/ships');
+
+    // ------ Pagina
+    const [page, setPage] = useState(1);
+    const [limit, setLimit] = useState(5);
+
+    const atualizaLista = (page) => {
+        setPage(page);
+        // forca atualizar lista ships
+        setControleAcoes(!controleAcoes);
+    }
+
+    // -- userRef textoBuscar
+    const textoBuscar = useRef('');
+    const onBuscarClick = () => {
+        setPage(1);
+        // forca atualizar lista ships
+        setControleAcoes(!controleAcoes);
+    };
+
+    useEffect(() => {
+        // forca atualizar lista ships
+        setControleAcoes(!controleAcoes);
+    }, [shipsLista]);
+
+    const shipsPaginada = useMemo(() => {
+        let listaFiltro = shipsLista;
+        const texto = textoBuscar.current?.value || '';
+        if (texto.length > 0) {
+            listaFiltro = shipsLista.filter((ship) => {
+                return ship.name.toLowerCase().includes(texto.toLowerCase()) ||
+                    ('' + ship.year_built).includes(texto.toLowerCase()) ||
+                    ship.type.toLowerCase().includes(texto.toLowerCase())
+            });
+        }
+        setTotalRegistro(listaFiltro.length);
+        let totalPagina = listaFiltro.length;
+        if ((page * limit) < totalPagina) {
+            totalPagina = (page * limit);
+        }
+        let listaPaginada = [];
+        for (let i = (page - 1) * limit; i < totalPagina; i++) {
+            listaPaginada.push(listaFiltro[i]);
+        }
+        return listaPaginada;
+    }, [ page, controleAcoes]);
+
     return (
         <div className="card card-default">
             <div className='card-header'>
@@ -23,6 +73,17 @@ function ListaShips() {
                 <table className="table table-striped table-hover">
                     <thead>
                     <tr>
+                        <th colSpan='4'>
+                            Busca
+                            {/*INPUT usando REF*/}
+                            <input type="text" className="form-control" id="engines_second_stage"
+                                   placeholder='Buscar...'
+                                   ref={textoBuscar}/>
+
+                            <button onClick={onBuscarClick} className="mt-2 btn btn-outline-dark">Buscar</button>
+                        </th>
+                    </tr>
+                    <tr>
                         <th>Name</th>
                         <th>Type</th>
                         <th>Year of Construction</th>
@@ -30,17 +91,17 @@ function ListaShips() {
                     </tr>
                     </thead>
                     <tbody>
-                    {ships.map(ship => (
-                        <tr key={ship.id}>
+                    {shipsPaginada.map(ship => (
+                        <tr key={ship?.id}>
                             <td>
-                                <Link to={ship.id}>
-                                    {ship.name}
+                                <Link to={ship?.id}>
+                                    {ship?.name}
                                 </Link>
                             </td>
-                            <td>{ship.type}</td>
-                            <td>{ship.year_built}</td>
+                            <td>{ship?.type}</td>
+                            <td>{ship?.year_built}</td>
                             <td>
-                                <img src={ship.image} width='100' height='100'></img>
+                                <img src={ship?.image} width='100' height='100'></img>
                             </td>
                         </tr>
                     ))}
@@ -48,11 +109,15 @@ function ListaShips() {
                 </table>
             </div>
 
-            <div className='card-footer'> {ships.length} Total Records
+            <div className='card-footer'>
+                {/*Utilizacao de Context entre PAI e Filho.*/}
+                <FooterDetails atualizaLista={atualizaLista} page={page} totalRegistro={totalRegistro}/>
+            </div>
+            <div className='card-footer'>
             </div>
 
         </div>
-    );
+    )
 }
 
 export default ListaShips;

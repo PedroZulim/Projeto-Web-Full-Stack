@@ -1,11 +1,32 @@
-import React from 'react';
+import React from "react";
+import logo from "../logoX.jpg";
 import styled from "styled-components";
+
+const StyledImage = styled.img`
+  width: 40px;
+  height: auto;
+  border-radius: 5px;
+`;
 
 function Footer() {
     return (
-        <footer className="footer mt-auto">
-            <span className="text-body-secondary">Rodapé do seu aplicativo</span>
-        </footer>
+        <div className="container">
+            <footer className="d-flex flex-wrap justify-content-between align-items-center py-3 my-4 border-top">
+                <p className="col-md-4 mb-0 text-muted">© Copyright 2023 SpaceX, Todos os direitos reservados</p>
+
+                <a href="/" className="col-md-4 d-flex align-items-center justify-content-center mb-3 mb-md-0 me-md-auto link-dark text-decoration-none">
+                    <StyledImage src={logo} className="card-img"/>
+                </a>
+
+                <ul className="nav col-md-4 justify-content-end">
+                    <li className="nav-item"><a href="#" className="nav-link px-2 text-muted">Home</a></li>
+                    <li className="nav-item"><a href="#" className="nav-link px-2 text-muted">Features</a></li>
+                    <li className="nav-item"><a href="#" className="nav-link px-2 text-muted">Pricing</a></li>
+                    <li className="nav-item"><a href="#" className="nav-link px-2 text-muted">FAQs</a></li>
+                    <li className="nav-item"><a href="#" className="nav-link px-2 text-muted">About</a></li>
+                </ul>
+            </footer>
+        </div>
     );
 }
 

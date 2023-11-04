@@ -2,7 +2,7 @@ import GetAPI from "../customHook/GetAPI";
 import styled from "styled-components";
 import {Link} from "react-router-dom";
 import React, {useEffect, useMemo, useRef, useState} from "react";
-import FooterDetails from "../template/FooterDetails";
+import FooterLista from "../template/FooterLista";
 
 const BotaoDetalhe = styled.button`
   background-color: #007bff;
@@ -111,7 +111,7 @@ function ListaShips() {
 
             <div className='card-footer'>
                 {/*Utilizacao de Context entre PAI e Filho.*/}
-                <FooterDetails atualizaLista={atualizaLista} page={page} totalRegistro={totalRegistro}/>
+                <FooterLista atualizaLista={atualizaLista} page={page} totalRegistro={totalRegistro}/>
             </div>
             <div className='card-footer'>
             </div>

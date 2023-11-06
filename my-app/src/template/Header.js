@@ -19,26 +19,26 @@ function Header() {
         <div className="container-fluid">
           <StyledDiv>
             <FontAwesomeIcon icon={faHome} size={70}/>
-            <Link to="/" className="navbar-brand"> Home</Link>
+            <Link to="/Projeto-Web-Full-Stack" className="navbar-brand"> Home</Link>
           </StyledDiv>
           <div className="collapse navbar-collapse" id="navbarSupportedContent">
             <ul className="navbar-nav me-auto mb-2 mb-lg-0">
               <li className="nav-item">
                 <StyledDiv className="ms-2">
                   <FontAwesomeIcon icon={faRocket} size={70}/>
-                  <Link to="/spacex/rockets" className="nav-link"> Rockets</Link>
+                  <Link to="/Projeto-Web-Full-Stack/spacex/rockets" className="nav-link"> Rockets</Link>
                 </StyledDiv>
               </li>
               <li className="nav-item">
                 <StyledDiv className="ms-2">
                   <FontAwesomeIcon icon={faShip} size={70}/>
-                  <Link to="/spacex/ships" className="nav-link">Ships</Link>
+                  <Link to="/Projeto-Web-Full-Stack/spacex/ships" className="nav-link">Ships</Link>
                 </StyledDiv>
               </li>
               <li className="nav-item">
                 <StyledDiv className="ms-2">
                   <FontAwesomeIcon icon={faInfo} size={70}/>
-                  <Link to="/About" className="nav-link"> About</Link>
+                  <Link to="/Projeto-Web-Full-Stack/about" className="nav-link"> About</Link>
                 </StyledDiv>
               </li>
             </ul>

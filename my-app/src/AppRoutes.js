@@ -13,7 +13,7 @@ import ListaRockets from "./rockets/ListaRockets";
 function AppRoutes() {
     return useRoutes([
         {path: "Projeto-Web-Full-Stack", element: <Home/>},
-        {path: "Projeto-Web-Full-Stack/about", element: <About/>},
+        {path: "Projeto-Web-Full-Stack/about/", element: <About/>},
         {path: "Projeto-Web-Full-Stack/spacex/ships/:id", element: <DetalhesShips/>},
         {path: "Projeto-Web-Full-Stack/spacex/ships", element: <ListaShips/>},
 

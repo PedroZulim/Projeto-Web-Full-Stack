@@ -1,7 +1,7 @@
 {
   "files": {
     "main.css": "/Projeto-Web-Full-Stack/static/css/main.d73fd2ea.css",
-    "main.js": "/Projeto-Web-Full-Stack/static/js/main.2d8a07ff.js",
+    "main.js": "/Projeto-Web-Full-Stack/static/js/main.e00d94ed.js",
     "static/js/787.28cb0dcd.chunk.js": "/Projeto-Web-Full-Stack/static/js/787.28cb0dcd.chunk.js",
     "static/media/spacecraft.png": "/Projeto-Web-Full-Stack/static/media/spacecraft.ce6e1478fff43e6c7496.png",
     "static/media/mars.png": "/Projeto-Web-Full-Stack/static/media/mars.6ca7117f821d14ef6e80.png",
@@ -10,11 +10,11 @@
     "static/media/SpaceX_Logo_Black.png": "/Projeto-Web-Full-Stack/static/media/SpaceX_Logo_Black.4ef35d1d06f7b38410e4.png",
     "index.html": "/Projeto-Web-Full-Stack/index.html",
     "main.d73fd2ea.css.map": "/Projeto-Web-Full-Stack/static/css/main.d73fd2ea.css.map",
-    "main.2d8a07ff.js.map": "/Projeto-Web-Full-Stack/static/js/main.2d8a07ff.js.map",
+    "main.e00d94ed.js.map": "/Projeto-Web-Full-Stack/static/js/main.e00d94ed.js.map",
     "787.28cb0dcd.chunk.js.map": "/Projeto-Web-Full-Stack/static/js/787.28cb0dcd.chunk.js.map"
   },
   "entrypoints": [
     "static/css/main.d73fd2ea.css",
-    "static/js/main.2d8a07ff.js"
+    "static/js/main.e00d94ed.js"
   ]
 }

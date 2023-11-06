@@ -1,5 +1,7 @@
 import React from 'react';
 import {Link} from "react-router-dom";
+import ship from "../images/shipIcon.svg";
+import logoblack from "../images/SpaceX_Logo_Black.png";
 
 function Header() {
   return (
@@ -12,14 +14,16 @@ function Header() {
                 <Link to="/spacex/rockets" className="nav-link"> Rockets</Link>
               </li>
               <li className="nav-item">
-                <Link to="/spacex/ships" className="nav-link"> Ships</Link>
+                <div>
+                  <Link to="/spacex/ships" className="nav-link"> `{ship} Ships`</Link>
+                </div>
               </li>
               <li className="nav-item">
                 <Link to="/About" className="nav-link"> About</Link>
               </li>
             </ul>
           </div>
-          <img src="SpaceX_Logo_Black.png" alt="Descrição da imagem" width="250" height="40" />
+          <img src={logoblack} alt="Descrição da imagem" width="250" height="40" />
         </div>
       </nav>
   )

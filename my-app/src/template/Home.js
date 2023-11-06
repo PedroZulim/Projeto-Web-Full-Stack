@@ -1,4 +1,7 @@
 import React from 'react';
+import mars from "../images/mars.png";
+import rocket from "../images/rocket.png";
+import spacecraft from "../images/spacecraft.png";
 
 function Home() {
     return (
@@ -29,7 +32,7 @@ function Home() {
                     <div className="row">
                         <div className="col-md-4">
                             <div className="card">
-                                <img src="rocket.png" className="card-img-top" alt="Rocket"/>
+                                <img src={rocket} className="card-img-top" alt="Rocket"/>
                                     <div className="card-body">
                                         <h5 className="card-title">Rocket Launches</h5>
                                         <p className="card-text">We provide reliable and cost-effective rocket launch services for satellites and payloads.</p>
@@ -38,7 +41,7 @@ function Home() {
                         </div>
                         <div className="col-md-4">
                             <div className="card">
-                                <img src="spacecraft.png" className="card-img-top" alt="Spacecraft"/>
+                                <img src={spacecraft} className="card-img-top" alt="Spacecraft"/>
                                     <div className="card-body">
                                         <h5 className="card-title">Spacecraft Development</h5>
                                         <p className="card-text">We design and build spacecraft for various missions, including crewed spaceflight and cargo resupply missions to the International Space Station.</p>
@@ -47,7 +50,7 @@ function Home() {
                         </div>
                         <div className="col-md-4">
                             <div className="card">
-                                <img src="mars.png" className="card-img-top" alt="Mars"/>
+                                <img src={mars} className="card-img-top" alt="Mars"/>
                                     <div className="card-body">
                                         <h5 className="card-title">Mars Colonization</h5>
                                         <p class="card-text">We are actively working on technologies and plans to enable human colonization of Mars, making life multiplanetary.</p>

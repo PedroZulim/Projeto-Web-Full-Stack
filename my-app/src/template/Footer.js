@@ -1,5 +1,5 @@
 import React from "react";
-import logo from "../logoX.jpg";
+import logo from "../images/logoX.png";
 import styled from "styled-components";
 
 const StyledImage = styled.img`
@@ -19,11 +19,11 @@ function Footer() {
                 </a>
 
                 <ul className="nav col-md-4 justify-content-end">
-                    <li className="nav-item"><a href="#" className="nav-link px-2 text-muted">Home</a></li>
+                    <li className="nav-item"><a href="/" className="nav-link px-2 text-muted">Home</a></li>
                     <li className="nav-item"><a href="#" className="nav-link px-2 text-muted">Features</a></li>
                     <li className="nav-item"><a href="#" className="nav-link px-2 text-muted">Pricing</a></li>
                     <li className="nav-item"><a href="#" className="nav-link px-2 text-muted">FAQs</a></li>
-                    <li className="nav-item"><a href="#" className="nav-link px-2 text-muted">About</a></li>
+                    <li className="nav-item"><a href="/About" className="nav-link px-2 text-muted">About</a></li>
                 </ul>
             </footer>
         </div>

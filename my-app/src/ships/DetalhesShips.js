@@ -73,19 +73,19 @@ function DetalhesShips() {
                         <div className="col-9">
                             <div className='row'>
                                 <div className="col-3">
-                                    <label htmlFor="roles" className="form-label">Roles</label>
-                                    <input type="text" className="form-control" id="roles" disabled={disableFields}
-                                           value={ship.roles}/>
+                                    <label htmlFor="name" className="form-label">Name</label>
+                                    <input type="text" className="form-control" id="name" disabled={disableFields}
+                                           value={ship.name}/>
+                                </div>
+                                <div className="col-3">
+                                    <label htmlFor="model" className="form-label">Model</label>
+                                    <input type="text" className="form-control" id="model" disabled={disableFields}
+                                           value={ship.model}/>
                                 </div>
                                 <div className="col-3">
                                     <label htmlFor="type" className="form-label">Type</label>
                                     <input type="text" className="form-control" id="type" disabled={disableFields}
                                            value={ship.type}/>
-                                </div>
-                                <div className="col-3">
-                                    <label htmlFor="legacy_id " className="form-label">Legacy Id</label>
-                                    <input type="text" className="form-control" id="legacy_id " disabled={disableFields}
-                                           value={ship.legacy_id}/>
                                 </div>
                                 <div className="col-3">
                                     <label htmlFor="home_port " className="form-label">Home Port</label>
@@ -95,14 +95,14 @@ function DetalhesShips() {
                             </div>
                             <div className='row mt-2'>
                                 <div className="col-3">
-                                    <label htmlFor="last_ais_update" className="form-label">Last Ais Update</label>
-                                    <input type="text" className="form-control" id="last_ais_update" disabled={disableFields}
-                                           value={ship.last_ais_update}/>
+                                    <label htmlFor="year_built" className="form-label">Year Built</label>
+                                    <input type="text" className="form-control" id="year_built" disabled={disableFields}
+                                           value={ship.year_built}/>
                                 </div>
                                 <div className="col-3">
-                                    <label htmlFor="model" className="form-label">Model</label>
-                                    <input type="text" className="form-control" id="model" disabled={disableFields}
-                                           value={ship.model}/>
+                                    <label htmlFor="status" className="form-label">Status</label>
+                                    <input type="text" className="form-control" id="status" disabled={disableFields}
+                                           value={ship.status}/>
                                 </div>
                                 <div className="col-3">
                                     <label htmlFor="imo " className="form-label">Imo</label>
@@ -139,14 +139,14 @@ function DetalhesShips() {
                             </div>
                             <div className='row mt-2'>
                                 <div className="col-3">
-                                    <label htmlFor="year_built" className="form-label">Year Built</label>
-                                    <input type="text" className="form-control" id="year_built" disabled={disableFields}
-                                           value={ship.year_built}/>
+                                    <label htmlFor="last_ais_update" className="form-label">Last Ais Update</label>
+                                    <input type="text" className="form-control" id="last_ais_update" disabled={disableFields}
+                                           value={ship.last_ais_update}/>
                                 </div>
                                 <div className="col-3">
-                                    <label htmlFor="status" className="form-label">Status</label>
-                                    <input type="text" className="form-control" id="status" disabled={disableFields}
-                                           value={ship.status}/>
+                                    <label htmlFor="legacy_id " className="form-label">Legacy Id</label>
+                                    <input type="text" className="form-control" id="legacy_id " disabled={disableFields}
+                                           value={ship.legacy_id}/>
                                 </div>
                                 <div className="col-3">
                                     <label htmlFor="speed_kn " className="form-label">Speed Kn</label>
@@ -177,9 +177,9 @@ function DetalhesShips() {
                                     </a>
                                 </div>
                                 <div className="col-3">
-                                    <label htmlFor="name" className="form-label">Name</label>
-                                    <input type="text" className="form-control" id="name" disabled={disableFields}
-                                           value={ship.name}/>
+                                    <label htmlFor="roles" className="form-label">Roles</label>
+                                    <input type="text" className="form-control" id="roles" disabled={disableFields}
+                                           value={ship.roles}/>
                                 </div>
                             </div>
                             <div className='row mt-2'>
@@ -188,16 +188,11 @@ function DetalhesShips() {
                                 {/*    <input type="text" className="form-control" id="active" disabled={disableFields}*/}
                                 {/*           value={ship.active ? 'Sim' : 'Não'}/>*/}
                                 {/*</div>*/}
-                                <div className="col-3">
-                                    <label htmlFor="launches" className="form-label">Launches</label>
-                                    <input type="text" className="form-control" id="launches" disabled={disableFields}
-                                           value={ship.launches}/>
-                                </div>
-                                <div className="col-3">
-                                    <label htmlFor="id" className="form-label">Id</label>
-                                    <input type="text" className="form-control" id="id" disabled={disableFields}
-                                           value={ship.id}/>
-                                </div>
+                                {/*<div className="col-3">*/}
+                                {/*    <label htmlFor="launches" className="form-label">Launches</label>*/}
+                                {/*    <input type="text" className="form-control" id="launches" disabled={disableFields}*/}
+                                {/*           value={ship.launches}/>*/}
+                                {/*</div>*/}
                             </div>
                         </div>
                     </div>

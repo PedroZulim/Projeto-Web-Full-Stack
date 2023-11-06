@@ -1,6 +1,7 @@
 import React from "react";
 import logo from "../images/logoX.png";
 import styled from "styled-components";
+import {Link} from "react-router-dom";
 
 const StyledImage = styled.img`
   width: 40px;
@@ -19,11 +20,11 @@ function Footer() {
                 </a>
 
                 <ul className="nav col-md-4 justify-content-end">
-                    <li className="nav-item"><a href="/Projeto-Web-Full-Stack" className="nav-link px-2 text-muted">Home</a></li>
-                    <li className="nav-item"><a href="#" className="nav-link px-2 text-muted">Features</a></li>
-                    <li className="nav-item"><a href="#" className="nav-link px-2 text-muted">Pricing</a></li>
-                    <li className="nav-item"><a href="#" className="nav-link px-2 text-muted">FAQs</a></li>
-                    <li className="nav-item"><a href="/Projeto-Web-Full-Stack/about" className="nav-link px-2 text-muted">About</a></li>
+                    <li className="nav-item"><Link to="/Projeto-Web-Full-Stack" className="nav-link px-2 text-muted">Home</Link></li>
+                    <li className="nav-item"><Link to="#" className="nav-link px-2 text-muted">Features</Link></li>
+                    <li className="nav-item"><Link to="#" className="nav-link px-2 text-muted">Pricing</Link></li>
+                    <li className="nav-item"><Link to="#" className="nav-link px-2 text-muted">FAQs</Link></li>
+                    <li className="nav-item"><Link to="/Projeto-Web-Full-Stack/about" className="nav-link px-2 text-muted">About</Link></li>
                 </ul>
             </footer>
         </div>

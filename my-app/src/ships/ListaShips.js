@@ -91,20 +91,26 @@ function ListaShips() {
                     </tr>
                     </thead>
                     <tbody>
-                    {shipsPaginada.map(ship => (
-                        <tr key={ship?.id}>
-                            <td>
-                                <Link to={ship?.id}>
-                                    {ship?.name}
-                                </Link>
-                            </td>
-                            <td>{ship?.type}</td>
-                            <td>{ship?.year_built}</td>
-                            <td>
-                                <img src={ship?.image} width='100' height='100'></img>
-                            </td>
+                    {shipsPaginada.length > 0 ? (
+                        shipsPaginada.map(ship => (
+                            <tr key={ship?.id}>
+                                <td>
+                                    <Link to={ship?.id}>
+                                        {ship?.name}
+                                    </Link>
+                                </td>
+                                <td>{ship?.type}</td>
+                                <td>{ship?.year_built}</td>
+                                <td>
+                                    <img src={ship?.image} width='100' height='100' />
+                                </td>
+                            </tr>
+                        ))
+                    ) : (
+                        <tr>
+                            <td colSpan="4" style={{ textAlign: 'center' }}>Nenhum registro encontrado.</td>
                         </tr>
-                    ))}
+                    )}
                     </tbody>
                 </table>
             </div>

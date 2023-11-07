@@ -117,7 +117,7 @@ function ListaShips() {
 
             <div className='card-footer'>
                 {/*Utilizacao de Context entre PAI e Filho.*/}
-                <FooterLista atualizaLista={atualizaLista} page={page} totalRegistro={totalRegistro}/>
+                <FooterLista atualizaLista={atualizaLista} page={page} totalRegistro={totalRegistro} limit={limit}/>
             </div>
             <div className='card-footer'>
             </div>

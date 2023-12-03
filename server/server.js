@@ -9,11 +9,12 @@ const publicPath = path.join(__dirname , '..', 'my-app', 'build');
 
 app.use(cors());
 
-app.use('/Projeto-Web-Full-Stack/', express.static(publicPath));
-
-app.get('/*', (req, res) => {
+app.get('/', (req, res) => {
 	res.sendFile(path.join(publicPath, 'index.html'));
 });
+
+app.use(express.static(publicPath));
+
 // catch 404 and forward to error handler
 app.use(function(req, res, next) {
 	next(createError(404));

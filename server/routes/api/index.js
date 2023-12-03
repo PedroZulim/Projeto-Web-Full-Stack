@@ -16,4 +16,4 @@ app.get('/', function (req, res) {
 
 app.use("/", indexRouter);
 
-app.use('/Projeto-Web-Full-Stack/static',express.static(path.join(__dirname + '/../', 'build/static')));
+app.use('/static',express.static(path.join(__dirname + '/../', 'build/static')));

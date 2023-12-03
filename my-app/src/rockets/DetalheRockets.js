@@ -67,7 +67,7 @@ function DetalheRockets() {
 								Remove
 							</button>
 
-							<Link to="/Projeto-Web-Full-Stack/spacex/rockets" className="m-1">
+							<Link to="/spacex/rockets" className="m-1">
 								<button className="btn btn-sm btn-info">
 									Back
 								</button>

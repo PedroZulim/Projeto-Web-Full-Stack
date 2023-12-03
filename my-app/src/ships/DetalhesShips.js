@@ -56,7 +56,7 @@ function DetalhesShips() {
 								Remove
 							</button>
 
-							<Link to="/Projeto-Web-Full-Stack/spacex/ships" className="m-1">
+							<Link to="/spacex/ships" className="m-1">
 								<button className="btn btn-sm btn-info">
 									Back
 								</button>

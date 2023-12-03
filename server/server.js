@@ -1,3 +1,4 @@
+const mongoq = require('mongoq');
 const createError = require("http-errors");
 const express = require('express');
 const app = express();
@@ -22,3 +23,11 @@ app.use(function(req, res, next) {
 
 // This displays message that the server running and listening to specified port
 app.listen(port, () => console.log(`Listening on port ${port}`));
+
+usuario = 'pedrozulim';
+senha = 'pedro123';
+urlMongo = 'pedro.vwve1zm.mongodb.net/Projeto-Web';
+
+db = mongoq("mongodb+srv://" + usuario + ":" + senha + "@" + urlMongo + "?reconnectWait=2000;retries=20");
+COLLECTION = 'Ships';
+let collectionPUT = db.collection(COLLECTION);

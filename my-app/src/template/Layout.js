@@ -11,7 +11,7 @@ const ContainerBody = styled.body`
 `;
 const Layout = () => {
     return (
-        <BrowserRouter>
+        <BrowserRouter basename="/">
             <Header/>
             <ContainerBody>
                 <AppRoutes/>

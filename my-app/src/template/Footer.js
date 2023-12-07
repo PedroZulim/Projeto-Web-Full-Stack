@@ -6,7 +6,7 @@ import {Link} from "react-router-dom";
 const StyledImage = styled.img`
   width: 40px;
   height: auto;
-  border-radius: 5px;
+  border-radius: 5px; 
 `;
 
 function Footer() {

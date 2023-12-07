@@ -20,22 +20,6 @@ app.get('/', (req, res) => {
 	res.sendFile(path.join(publicPath, 'index.html'));
 });
 
-app.get('/spacex/ships', (req, res) => {
-	res.sendFile(path.join(publicPath, 'index.html'));
-});
-
-app.get('/spacex/ships/:id', (req, res) => {
-	res.sendFile(path.join(publicPath, 'index.html'));
-});
-
-app.get('/spacex/rockets', (req, res) => {
-	res.sendFile(path.join(publicPath, 'index.html'));
-});
-
-app.get('/spacex/rockets/:id', (req, res) => {
-	res.sendFile(path.join(publicPath, 'index.html'));
-});
-
 app.use(express.static(publicPath));
 
 

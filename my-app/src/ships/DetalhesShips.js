@@ -200,7 +200,7 @@ function DetalhesShips() {
                     <FooterDetails/>
                 </div>
             </div>
-            {/*<p>{campos}</p>*/}
+            <p>{campos}</p>
 
             {showModal && createPortal(
                 <ConfirmeModal onClose={() => setShowModal(false)}/>,

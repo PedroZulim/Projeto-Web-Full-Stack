@@ -42,16 +42,16 @@ function ListaRockets() {
 					</thead>
 					<tbody>
 						{rocketsTotal.map(rocket => (
-							<tr key={rocket.id}>
+							<tr key={rocket?.id}>
 								<td>
-									<Link to={rocket.id}>
-										{rocket.name}
+									<Link to={rocket?.id}>
+										{rocket?.name}
 									</Link>
 								</td>
-								<td>{rocket.description}</td>
-								<td>{rocket.first_flight}</td>
+								<td>{rocket?.description}</td>
+								<td>{rocket?.first_flight}</td>
 								<td>
-									<img src={rocket.flickr_images[0]} width='100' height='100'></img>
+									<img src={rocket?.flickr_images[0]} width='100' height='100'></img>
 								</td>
 							</tr>
 						))}

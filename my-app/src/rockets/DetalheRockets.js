@@ -18,7 +18,7 @@ const BotaoVoltar = styled.button`
 function DetalheRockets() {
     const navigate = useNavigate();
     const {id} = useParams();
-    const [rocket] = GetAPI("http://localhost:5000/api/rockets/" + id);
+    const [rocket] = GetAPI("http://localhost:5000/api/rockets/:" + id);
 
     const [showModal, setShowModal] = useState(false);
     const [disableFields, setDisableFields] = useState(true);
@@ -365,7 +365,7 @@ function DetalheRockets() {
 
             </div>
 
-            {/*<p>{campos}</p>*/}
+            <p>{campos}</p>
 
             {showModal && createPortal(
                 <ConfirmeModal onClose={() => setShowModal(false)}/>,

@@ -22,8 +22,6 @@ app.get('/', (req, res) => {
 
 app.use(express.static(publicPath));
 
-
-
 // This displays message that the server running and listening to specified port
 app.listen(port, () => console.log(`Listening on port ${port}`));
 
@@ -35,7 +33,6 @@ urlMongo = '127.0.0.1:27017/pedro';
 
 mongoDB = mongoq("mongodb://" + usuario + ":" + senha + "@" + urlMongo + "?reconnectWait=2000;retries=20");
 
-// LOG ALL REQUEST
 app.use(function(req, res, next) {
 	console.log('REQUEST - ', req.url);
 	next();

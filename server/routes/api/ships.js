@@ -3,7 +3,7 @@ const {ObjectID} = require("mongodb");
 exports.addRoutes = function (app, db, buscarMongoDB) {
 	const COLLECTION = 'ships';
 
-	app.post('/api/ships', async (req, res,) => {
+	app.post('/api/ships/:id', async (req, res,) => {
 		try {
 			const dbConnection = db.collection(COLLECTION);
 
@@ -17,6 +17,7 @@ exports.addRoutes = function (app, db, buscarMongoDB) {
 				res.status(404).json(resultado);
 			} else {
 				// adicionar websock para avisar todos usuarios.
+				resultado = { "message" : "Document inserted!"};
 				res.status(200).json(resultado);
 			}
 
@@ -27,14 +28,15 @@ exports.addRoutes = function (app, db, buscarMongoDB) {
 	app.delete('/api/ships/:id', async (req, res,) => {
 		try {
 			const dbConnection = db.collection(COLLECTION);
-			const objID = {id: new ObjectID(req.params.id)};
+			const objID = {_id: new ObjectID(req.params.id)};
 
 			let resultado = await dbConnection.remove(objID);
 			if (resultado.result && resultado.result.ok !== 1) {
-				resultado = '{ "message" : "Document not update 1"}';
+				resultado = { "message" : "Document not deleted"};
 				res.status(404).json(resultado);
 			} else {
 				// adicionar websock para avisar todos usuarios.
+				resultado = { "message" : "Document deleted!"};
 				res.status(200).json(resultado);
 			}
 		} catch (error) {
@@ -47,18 +49,20 @@ exports.addRoutes = function (app, db, buscarMongoDB) {
 			const dbConnection = db.collection(COLLECTION);
 
 			let objAtualizar = req.body;
+			delete objAtualizar._id;
 			objAtualizar = {$set: objAtualizar};
 			const objParametros = {
 				'safe': true,
 				'upsert': true
 			};
-			const objID = {id: new ObjectID(req.params.id)};
+			const objID = {_id: new ObjectID(req.params.id)};
 			let resultado = await dbConnection.update(objID, objAtualizar, objParametros);
 			if (resultado.result && resultado.result.ok !== 1) {
-				resultado = '{ "message" : "Document not update 1"}';
+				resultado = { "message" : "Document not update 1"};
 				res.status(404).json(resultado);
 			} else {
 				// adicionar websock para avisar todos usuarios.
+				resultado = { "message" : "Document updated!"};
 				res.status(200).json(resultado);
 			}
 		} catch (error) {
@@ -66,16 +70,16 @@ exports.addRoutes = function (app, db, buscarMongoDB) {
 		}
 	});
 
-	app.get('/api/ships/:id', async (req, res,) => {
+	app.get('/api/ships/:id', async (req, res) => {
 		try {
-			query = {id: new ObjectID(req.params.id)};
+			query = {_id: new ObjectID(req.params.id)};
 			fields = {};
 			sort = {};
 
 			const dbConnection = db.collection(COLLECTION);
 
 			resultado = await buscarMongoDB(dbConnection, query, fields, sort);
-			res.status(200).json(resultado);
+			res.status(200).json(resultado[0]);
 		} catch (error) {
 			res.status(500).json(error);
 		}

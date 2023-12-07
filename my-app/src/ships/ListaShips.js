@@ -93,9 +93,9 @@ function ListaShips() {
                     <tbody>
                     {shipsPaginada.length > 0 ? (
                         shipsPaginada.map(ship => (
-                            <tr key={ship?.id}>
+                            <tr key={ship?._id}>
                                 <td>
-                                    <Link to={ship?.id}>
+                                    <Link to={ship?._id}>
                                         {ship?.name}
                                     </Link>
                                 </td>

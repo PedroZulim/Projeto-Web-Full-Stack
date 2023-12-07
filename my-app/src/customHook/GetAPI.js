@@ -9,9 +9,9 @@ const GetAPI = (url) => {
             .then((data) => {
                 setData(data)
             });
-    }, [url]);
+    }, []);
 
-    return [data];
+    return [data, setData];
 };
 
 export default GetAPI;

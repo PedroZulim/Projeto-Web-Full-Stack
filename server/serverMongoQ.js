@@ -11,7 +11,8 @@ const apiSeguranca = require('./routes/api/seguranca');
 const apiShip = require('./routes/api/ships');
 const apiRockets = require('./routes/api/rockets');
 
-app.use(express.urlencoded({extended: true}));
+app.use(express.urlencoded({ extended: true }));
+app.use(express.json());
 app.use(cors());
 
 const publicPath = path.join(__dirname, '..', 'my-app', 'build');

@@ -30,16 +30,17 @@ function ListaShips() {
 
     // -- userRef textoBuscar
     const textoBuscar = useRef('');
-    const onBuscarClick = () => {
-        setPage(1);
-        // forca atualizar lista ships
-        setControleAcoes(!controleAcoes);
-    };
 
     useEffect(() => {
-        // forca atualizar lista ships
+        // forca atualizar lista rocket
         setControleAcoes(!controleAcoes);
     }, [shipsLista]);
+
+    const onBuscarClick = () => {
+        setPage(1);
+        // forca atualizar lista rocket
+        setControleAcoes(!controleAcoes);
+    };
 
     const shipsPaginada = useMemo(() => {
         let listaFiltro = shipsLista;
@@ -81,6 +82,9 @@ function ListaShips() {
                                    ref={textoBuscar}/>
 
                             <button onClick={onBuscarClick} className="mt-2 btn btn-outline-dark">Buscar</button>
+                            <Link to="/spacex/ships/novo">
+                                <button className="mt-2 ms-1 btn btn-outline-dark">Novo</button>
+                            </Link>
                         </th>
                     </tr>
                     <tr>

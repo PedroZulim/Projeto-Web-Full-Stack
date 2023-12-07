@@ -42,21 +42,40 @@ function DetalhesShips() {
 	}
 
 	const salvar = () => {
-		const shipUpdate = ship;
-		// delete shipUpdate._id;
-		// Call the PutAPI hook with the appropriate URL and object
-		const requestOptions = {
-			method: 'PUT',
-			headers: {'Content-Type': 'application/json'},
-			body: JSON.stringify(shipUpdate)
-		};
-		// Simple DELETE request with fetch
-		fetch(`http://localhost:5000/api/ships/${ship._id}`, requestOptions)
-			.then((res) => res.json())
-			.then((data) => {
-				alert(data.message);
-			});
+			if (id === 'novo') {
+				const shipUpdate = ship;
+				// delete shipUpdate._id;
+				// Call the PutAPI hook with the appropriate URL and object
+				const requestOptions = {
+					method: 'POST',
+					headers: {'Content-Type': 'application/json'},
+					body: JSON.stringify(shipUpdate)
+				};
+				// Simple DELETE request with fetch
+				fetch(`http://localhost:5000/api/ships/`, requestOptions)
+					.then((res) => res.json())
+					.then((data) => {
+						alert(data.message);
+					});
+			} else {
+				const shipUpdate = ship;
+				// delete shipUpdate._id;
+				// Call the PutAPI hook with the appropriate URL and object
+				const requestOptions = {
+					method: 'PUT',
+					headers: {'Content-Type': 'application/json'},
+					body: JSON.stringify(shipUpdate)
+				};
+				// Simple DELETE request with fetch
+				fetch(`http://localhost:5000/api/ships/${ship._id}`, requestOptions)
+					.then((res) => res.json())
+					.then((data) => {
+						alert(data.message);
+					});
+			}
 	}
+
+
 
 	const confirmDelete = async () => {
 		// Simple DELETE request with fetch
@@ -240,7 +259,7 @@ function DetalhesShips() {
 					<FooterDetails/>
 				</div>
 			</div>
-			<p>{campos}</p>
+			{/*<p>{campos}</p>*/}
 
 			{showModal && createPortal(
 				<ConfirmeModal onClose={() => setShowModal(false)} onConfirm={() => confirmDelete(ship._id)}/>,

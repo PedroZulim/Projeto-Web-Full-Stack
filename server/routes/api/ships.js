@@ -3,7 +3,7 @@ const {ObjectID} = require("mongodb");
 exports.addRoutes = function (app, db, buscarMongoDB) {
 	const COLLECTION = 'ships';
 
-	app.post('/api/ships/:id', async (req, res,) => {
+	app.post('/api/ships', async (req, res,) => {
 		try {
 			const dbConnection = db.collection(COLLECTION);
 

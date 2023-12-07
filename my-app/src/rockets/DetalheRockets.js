@@ -65,20 +65,38 @@ function DetalheRockets() {
 		setRocket(rocket);
 	}
 	const salvar = () => {
-		const rocketUpdate = rocket;
-		// delete rocketUpdate._id;
-		// Call the PutAPI hook with the appropriate URL and object
-		const requestOptions = {
-			method: 'PUT',
-			headers: {'Content-Type': 'application/json'},
-			body: JSON.stringify(rocketUpdate)
-		};
-		// Simple DELETE request with fetch
-		fetch(`http://localhost:5000/api/rockets/${rocket._id}`, requestOptions)
-			.then((res) => res.json())
-			.then((data) => {
-				alert(data.message);
-			});
+		if(id === 'novo') {
+			const rocketUpdate = rocket;
+			// delete shipUpdate._id;
+			// Call the PutAPI hook with the appropriate URL and object
+			const requestOptions = {
+				method: 'POST',
+				headers: {'Content-Type': 'application/json'},
+				body: JSON.stringify(rocketUpdate)
+			};
+			// Simple DELETE request with fetch
+			fetch(`http://localhost:5000/api/rockets/`, requestOptions)
+				.then((res) => res.json())
+				.then((data) => {
+					alert(data.message);
+				});
+		}else{
+			const rocketUpdate = rocket;
+			// delete rocketUpdate._id;
+			// Call the PutAPI hook with the appropriate URL and object
+			const requestOptions = {
+				method: 'PUT',
+				headers: {'Content-Type': 'application/json'},
+				body: JSON.stringify(rocketUpdate)
+			};
+			// Simple DELETE request with fetch
+			fetch(`http://localhost:5000/api/rockets/${rocket._id}`, requestOptions)
+				.then((res) => res.json())
+				.then((data) => {
+					alert(data.message);
+				});
+		}
+
 	}
 
 	const confirmDelete = async () => {
@@ -137,6 +155,29 @@ function DetalheRockets() {
 								<label htmlFor="description" className="form-label">Description</label>
 								<textarea className="form-control" id="description" disabled={disableFields}
 										  value={rocket.description} rows="3"></textarea>
+							</div>
+							<div className="row">
+								<div className="col-3 mt-1">
+									<label htmlFor="name" className="form-label">Name</label>
+									<input type="text" className="form-control" id="name"
+										   disabled={disableFields}
+										   value={rocket.name} onChange={onHandleChange}/>
+								</div>
+								<div className="col-3 mt-1">
+									<label htmlFor="active" className="form-label">Active</label>
+									<input type="text" className="form-control" id="active" disabled={disableFields}
+										   value={rocket.active ? 'Active' : 'Inactive'}/>
+								</div>
+								<div className="col-3 mt-1">
+									<label htmlFor="country" className="form-label">Country </label>
+									<input type="text" className="form-control" id="country" disabled={disableFields}
+										   value={rocket.country}/>
+								</div>
+								<div className="col-3 mt-1">
+									<label htmlFor="type" className="form-label">Type</label>
+									<input type="text" className="form-control" id="type" disabled={disableFields}
+										   value={rocket.type}/>
+								</div>
 							</div>
 							<div className="row">
 								<div className="col-3 mt-1">
@@ -424,7 +465,7 @@ function DetalheRockets() {
 
 			</div>
 
-			<p>{campos}</p>
+			{/*<p>{campos}</p>*/}
 
 			{showModal && createPortal(
 				<ConfirmeModal onClose={() => setShowModal(false)} onConfirm={() => confirmDelete(rocket?._id)}/>,

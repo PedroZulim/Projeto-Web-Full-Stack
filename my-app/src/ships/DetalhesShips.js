@@ -17,12 +17,11 @@ const BotaoVoltar = styled.button`
 function DetalhesShips() {
     const navigate = useNavigate();
     const {id} = useParams();
-    const [ship] = GetAPI('https://api.spacexdata.com/v4/ships/' + id);
+    const [ship] = GetAPI('http://localhost:5000/api/ships/' + id);
     const [showModal, setShowModal] = useState(false);
     const [disableFields, setDisableFields] = useState(true);
 
     var campos = [];
-
 
     if (!ship) {
         return <div>Ship not found</div>;

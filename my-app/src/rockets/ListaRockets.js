@@ -12,7 +12,7 @@ const BotaoDetalhe = styled.button`
 `;
 
 function ListaRockets() {
-	const [rocketsTotal] = GetAPI('https://api.spacexdata.com/v4/rockets');
+	const [rocketsTotal] = GetAPI('http://localhost:5000/api/rockets');
 
 	const [lista, setLista] = useState([]);
 

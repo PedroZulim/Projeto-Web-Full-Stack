@@ -3,13 +3,15 @@ const express = require('express');
 const session = require('express-session');
 const rateLimit = require("express-rate-limit");
 const expressSanitizer = require('express-sanitizer');
+// const expressValidator = require('express-validator');
 const app = express();
 const path = require('path');
 const port = process.env.PORT || 5000;
 const cors = require("cors");
-const ObjectID = require('mongodb').ObjectID;
 const bodyParser = require('body-parser');
 const config = require('./lib/configuracao');
+const https = require('https');
+const fs = require('fs');
 
 
 const apiSeguranca = require('./routes/api/seguranca');
@@ -20,7 +22,8 @@ const apiRockets = require('./routes/api/rockets');
 
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());
-app.use(bodyParser.json())
+app.use(bodyParser.json());
+// app.use(expressValidator());
 app.use(cors());
 // Mount express-sanitizer middleware here
 app.use(expressSanitizer());
@@ -32,8 +35,6 @@ app.get('/', (req, res) => {
 
 app.use(express.static(config.publicPath));
 
-// This displays message that the server running and listening to specified port
-app.listen(port, () => console.log('Listening on port ' + port));
 
 app.use(function(req, res, next) {
 	console.log('REQUEST - ', req.url);
@@ -56,3 +57,10 @@ apiSeguranca.addRoutes(app, config);
 apiShip.addRoutes(app, config);
 // Adiciona rotas API ROCKET
 apiRockets.addRoutes(app, config);
+
+
+var server = https.createServer(config.serverOptions, app);
+
+server.listen(port, () => {
+	console.log("server HTTPS starting on port : " + port)
+});

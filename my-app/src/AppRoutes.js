@@ -3,6 +3,7 @@ import {useRoutes} from 'react-router-dom';
 import React from 'react';
 import Home from "./template/Home";
 import About from "./template/About";
+import Login from "./template/Login";
 import NoPage from "./template/NoPage";
 import ListaShips from "./ships/ListaShips";
 import DetalhesShips from "./ships/DetalhesShips";
@@ -19,6 +20,8 @@ function AppRoutes() {
 
         {path: "/spacex/rockets/:id", element: <DetalheRockets/>},
         {path: "/spacex/rockets", element: <ListaRockets/>},
+
+        {path: "/login", element: <Login/>},
 
         {path: "*", element: <NoPage/>},
     ]);

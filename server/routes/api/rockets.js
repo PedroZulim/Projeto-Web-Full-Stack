@@ -1,11 +1,11 @@
 const {ObjectID} = require("mongodb");
 
-exports.addRoutes = function (app, db, buscarMongoDB) {
+exports.addRoutes = function (app, config ) {
 	const COLLECTION = 'rockets';
 
 	app.post('/api/rockets', async (req, res,) => {
 		try {
-			const dbConnection = db.collection(COLLECTION);
+			const dbConnection = config.db.collection(COLLECTION);
 
 			const objNovo = req.body;
 
@@ -27,7 +27,7 @@ exports.addRoutes = function (app, db, buscarMongoDB) {
 
 	app.delete('/api/rockets/:id', async (req, res,) => {
 		try {
-			const dbConnection = db.collection(COLLECTION);
+			const dbConnection = config.db.collection(COLLECTION);
 			const objID = {_id: new ObjectID(req.params.id)};
 
 			let resultado = await dbConnection.remove(objID);
@@ -46,7 +46,7 @@ exports.addRoutes = function (app, db, buscarMongoDB) {
 
 	app.put('/api/rockets/:id', async (req, res,) => {
 		try {
-			const dbConnection = db.collection(COLLECTION);
+			const dbConnection = config.db.collection(COLLECTION);
 
 			let objAtualizar = req.body;
 			delete objAtualizar._id;
@@ -75,9 +75,9 @@ exports.addRoutes = function (app, db, buscarMongoDB) {
 			fields = {};
 			sort = {};
 
-			const dbConnection = db.collection(COLLECTION);
+			const dbConnection = config.db.collection(COLLECTION);
 
-			resultado = await buscarMongoDB(dbConnection, query, fields, sort);
+			resultado = await config.buscarMongoDB(dbConnection, query, fields, sort);
 			res.status(200).json(resultado[0]);
 		} catch (error) {
 			res.status(500).json(error);
@@ -90,9 +90,9 @@ exports.addRoutes = function (app, db, buscarMongoDB) {
 			fields = {};
 			sort = {};
 
-			const dbConnection = db.collection(COLLECTION);
+			const dbConnection = config.db.collection(COLLECTION);
 
-			resultado = await buscarMongoDB(dbConnection, query, fields, sort);
+			resultado = await config.buscarMongoDB(dbConnection, query, fields, sort);
 			res.status(200).json(resultado);
 		} catch (error) {
 			res.status(500).json(error);

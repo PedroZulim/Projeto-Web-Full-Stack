@@ -2,7 +2,7 @@ const {ObjectID} = require("mongodb");
 
 const COLLECTION = 'ships';
 
-exports.addRoutes = function(app, db, buscarMongoDB) {
+exports.addRoutes = function(app, config) {
 
 	app.post('/login', (req, res) => {
 		const session = req.session;

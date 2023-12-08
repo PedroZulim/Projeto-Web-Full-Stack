@@ -4,6 +4,7 @@ import Footer from "./Footer";
 import logo from "../images/Logo-Login.png";
 
 import styled from "styled-components";
+import {useRef} from "react";
 
 const StyledForm = styled.form`
   align-items: center;
@@ -19,6 +20,10 @@ const StyledMain = styled.main`
 `;
 
 function Login() {
+
+    const passwordInputRef  = useRef('');
+    const emailInputRef = useRef('');
+
     return (
         <div className="text-center">
             <StyledMain>
@@ -26,11 +31,13 @@ function Login() {
                     <img src={logo} alt="" width="250" height="250"/>
                     <h1 className="h3 mb-3 fw-normal">Please sign in</h1>
                     <div className="form-floating">
-                        <input type="email" className="form-control" id="floatingInput" placeholder="name@example.com"/>
+                        <input type="email" className="form-control" id="floatingInput" placeholder="name@example.com"
+                                ref={emailInputRef}/>
                         <label htmlFor="floatingInput">Email address</label>
                     </div>
                     <div className="form-floating">
-                        <input type="password" className="form-control" id="floatingPassword" placeholder="Password"/>
+                        <input type="password" className="form-control" id="floatingPassword" placeholder="Password"
+                               ref={passwordInputRef}/>
                         <label htmlFor="floatingPassword">Password</label>
                     </div>
                     <div className="checkbox mb-3 mt-3">

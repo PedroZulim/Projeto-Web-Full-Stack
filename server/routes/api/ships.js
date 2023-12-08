@@ -1,7 +1,8 @@
 const {ObjectID} = require("mongodb");
-const {quiery, body, validationResult} = require('express-validator');
+const {query, body, param, validationResult} = require('express-validator');
 
-exports.addRoutes = function (app, db, buscarMongoDB) {
+
+exports.addRoutes = function(app, config) {
 	const COLLECTION = 'ships';
 
 	app.post('/api/ships', body('name').isLength({min: 3}), body('year_built').isInt().toInt(), async (req, res,) => {
@@ -10,11 +11,12 @@ exports.addRoutes = function (app, db, buscarMongoDB) {
 			if (!validation.isEmpty()) {
 				message = '';
 				for (const error of validation.errors) {
-					message += 'Campo [' + error.path + '] ' + error.msg  + ' - ';
+					message += 'Campo [' + error.path + '] ' + error.msg + ' - ';
 				}
 				return res.status(400).json({message: message});
 			}
-			const dbConnection = db.collection(COLLECTION);
+
+			const dbConnection = config.db.collection(COLLECTION);
 
 			const objNovo = req.body;
 
@@ -26,7 +28,7 @@ exports.addRoutes = function (app, db, buscarMongoDB) {
 				res.status(404).json(resultado);
 			} else {
 				// adicionar websock para avisar todos usuarios.
-				resultado = { "message" : "Document inserted!"};
+				resultado = {"message": "Document inserted!"};
 				res.status(200).json(resultado);
 			}
 
@@ -34,18 +36,21 @@ exports.addRoutes = function (app, db, buscarMongoDB) {
 			res.status(500).json(error);
 		}
 	});
-	app.delete('/api/ships/:id', async (req, res,) => {
+	app.delete('/api/ships/:id', param('id').isLength({
+		min: 24,
+		max: 24
+	}), async (req, res,) => {
 		try {
-			const dbConnection = db.collection(COLLECTION);
+			const dbConnection = config.db.collection(COLLECTION);
 			const objID = {_id: new ObjectID(req.params.id)};
 
 			let resultado = await dbConnection.remove(objID);
 			if (resultado.result && resultado.result.ok !== 1) {
-				resultado = { "message" : "Document not deleted"};
+				resultado = {"message": "Document not deleted"};
 				res.status(404).json(resultado);
 			} else {
 				// adicionar websock para avisar todos usuarios.
-				resultado = { "message" : "Document deleted!"};
+				resultado = {"message": "Document deleted!"};
 				res.status(200).json(resultado);
 			}
 		} catch (error) {
@@ -55,7 +60,7 @@ exports.addRoutes = function (app, db, buscarMongoDB) {
 
 	app.put('/api/ships/:id', async (req, res,) => {
 		try {
-			const dbConnection = db.collection(COLLECTION);
+			const dbConnection = config.db.collection(COLLECTION);
 
 			let objAtualizar = req.body;
 			delete objAtualizar._id;
@@ -67,11 +72,11 @@ exports.addRoutes = function (app, db, buscarMongoDB) {
 			const objID = {_id: new ObjectID(req.params.id)};
 			let resultado = await dbConnection.update(objID, objAtualizar, objParametros);
 			if (resultado.result && resultado.result.ok !== 1) {
-				resultado = { "message" : "Document not update 1"};
+				resultado = {"message": "Document not update 1"};
 				res.status(404).json(resultado);
 			} else {
 				// adicionar websock para avisar todos usuarios.
-				resultado = { "message" : "Document updated!"};
+				resultado = {"message": "Document updated!"};
 				res.status(200).json(resultado);
 			}
 		} catch (error) {
@@ -81,13 +86,13 @@ exports.addRoutes = function (app, db, buscarMongoDB) {
 
 	app.get('/api/ships/:id', async (req, res) => {
 		try {
-			query = {_id: new ObjectID(req.params.id)};
+			filtro = {_id: new ObjectID(req.params.id)};
 			fields = {};
 			sort = {};
 
-			const dbConnection = db.collection(COLLECTION);
+			const dbConnection = config.db.collection(COLLECTION);
 
-			resultado = await buscarMongoDB(dbConnection, query, fields, sort);
+			resultado = await config.buscarMongoDB(dbConnection, filtro, fields, sort);
 			res.status(200).json(resultado[0]);
 		} catch (error) {
 			res.status(500).json(error);
@@ -96,13 +101,13 @@ exports.addRoutes = function (app, db, buscarMongoDB) {
 
 	app.get('/api/ships', async (req, res,) => {
 		try {
-			query = {};
+			filtro = {};
 			fields = {};
 			sort = {};
 
-			const dbConnection = db.collection(COLLECTION);
+			const dbConnection = config.db.collection(COLLECTION);
 
-			resultado = await buscarMongoDB(dbConnection, query, fields, sort);
+			resultado = await config.buscarMongoDB(dbConnection, filtro, fields, sort);
 			res.status(200).json(resultado);
 		} catch (error) {
 			res.status(500).json(error);

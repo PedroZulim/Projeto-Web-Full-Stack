@@ -1,5 +1,6 @@
 {
   "dependencies": {
+    "bcrypt": "^5.1.1",
     "bson": "^1.1.4",
     "connect-redis": "^7.1.0",
     "cors": "^2.8.5",
@@ -9,6 +10,7 @@
     "express-session": "^1.17.3",
     "express-validator": "^7.0.1",
     "http-errors": "^2.0.0",
+    "jsonwebtoken": "^9.0.2",
     "mongodb": "^2.2.36",
     "mongodb-core": "^1.2.21",
     "mongoq": "0.2.3",

@@ -21,8 +21,6 @@ function Login() {
     const passwordInputRef  = useRef('');
     const emailInputRef = useRef('');
 
-
-
     return (
         <div className="text-center">
             <StyledMain>
@@ -44,7 +42,7 @@ function Login() {
                             <input type="checkbox" value="remember-me"/> Remember me
                         </label>
                     </div>
-                    <button className="w-100 btn btn-lg btn-primary" type="submit">Sign in</button>
+                    <button className="w-100 btn btn-lg btn-primary bg-black border-black" type="submit">Sign in</button>
                 </StyledForm>
             </StyledMain>
         </div>

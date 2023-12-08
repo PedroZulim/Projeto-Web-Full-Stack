@@ -1,10 +1,19 @@
 const {ObjectID} = require("mongodb");
+const {quiery, body, validationResult} = require('express-validator');
 
 exports.addRoutes = function (app, db, buscarMongoDB) {
 	const COLLECTION = 'ships';
 
-	app.post('/api/ships', async (req, res,) => {
+	app.post('/api/ships', body('name').isLength({min: 3}), body('year_built').isInt().toInt(), async (req, res,) => {
 		try {
+			const validation = validationResult(req);
+			if (!validation.isEmpty()) {
+				message = '';
+				for (const error of validation.errors) {
+					message += 'Campo [' + error.path + '] ' + error.msg  + ' - ';
+				}
+				return res.status(400).json({message: message});
+			}
 			const dbConnection = db.collection(COLLECTION);
 
 			const objNovo = req.body;

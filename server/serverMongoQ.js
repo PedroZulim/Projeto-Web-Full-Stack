@@ -8,8 +8,8 @@ const path = require('path');
 const port = process.env.PORT || 5000;
 const cors = require("cors");
 const ObjectID = require('mongodb').ObjectID;
-const bodyParser = require('body-parser')
-const config = require('./lib/configuracao')
+const bodyParser = require('body-parser');
+const config = require('./lib/configuracao');
 
 
 const apiSeguranca = require('./routes/api/seguranca');
@@ -47,9 +47,7 @@ const limiter = rateLimit({
 	limit: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes).
 	standardHeaders: 'draft-7', // draft-6: `RateLimit-*` headers; draft-7: combined `RateLimit` header
 	legacyHeaders: false, // Disable the `X-RateLimit-*` headers.
-	// store: ... , // Use an external store for consistency across multiple server instances.
 })
-// Apply the rate limiting middleware to all requests.
 app.use(limiter);
 
 // Adiciona rotas API Seguranca

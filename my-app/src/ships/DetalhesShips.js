@@ -17,7 +17,7 @@ const BotaoVoltar = styled.button`
 function DetalhesShips() {
 	const navigate = useNavigate();
 	const {id} = useParams();
-	const [ship, setShip] = GetAPI('http://localhost:5000/api/ships/' + id);
+	const [ship, setShip] = GetAPI('https://localhost:5000/api/ships/' + id);
 	const [showModal, setShowModal] = useState(false);
 	const [disableFields, setDisableFields] = useState(true);
 
@@ -52,7 +52,7 @@ function DetalhesShips() {
 					body: JSON.stringify(shipUpdate)
 				};
 				// Simple DELETE request with fetch
-				fetch(`http://localhost:5000/api/ships/`, requestOptions)
+				fetch(`https://localhost:5000/api/ships/`, requestOptions)
 					.then((res) => res.json())
 					.then((data) => {
 						alert(data.message);
@@ -67,7 +67,7 @@ function DetalhesShips() {
 					body: JSON.stringify(shipUpdate)
 				};
 				// Simple DELETE request with fetch
-				fetch(`http://localhost:5000/api/ships/${ship._id}`, requestOptions)
+				fetch(`https://localhost:5000/api/ships/${ship._id}`, requestOptions)
 					.then((res) => res.json())
 					.then((data) => {
 						alert(data.message);

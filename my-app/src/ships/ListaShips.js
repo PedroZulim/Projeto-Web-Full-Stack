@@ -16,7 +16,7 @@ function ListaShips() {
     const [controleAcoes, setControleAcoes] = useState([]);
     const [totalRegistro, setTotalRegistro] = useState([]);
 
-    const [shipsLista] = GetAPI('http://localhost:5000/api/ships');
+    const [shipsLista] = GetAPI('https://localhost:5000/api/ships');
 
     // ------ Pagina
     const [page, setPage] = useState(1);

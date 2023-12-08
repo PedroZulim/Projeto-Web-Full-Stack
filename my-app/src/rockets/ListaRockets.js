@@ -16,7 +16,7 @@ function ListaRockets() {
 	const [controleAcoes, setControleAcoes] = useState([]);
 	const [totalRegistro, setTotalRegistro] = useState([]);
 
-	const [rocketsLista] = GetAPI('http://localhost:5000/api/rockets');
+	const [rocketsLista] = GetAPI('https://localhost:5000/api/rockets');
 
 	// ------ Pagina
 	const [page, setPage] = useState(1);

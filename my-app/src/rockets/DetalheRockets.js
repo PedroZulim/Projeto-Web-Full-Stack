@@ -19,7 +19,7 @@ const BotaoVoltar = styled.button`
 function DetalheRockets() {
 	const navigate = useNavigate();
 	const {id} = useParams();
-	const [rocket, setRocket] = GetAPI("http://localhost:5000/api/rockets/" + id);
+	const [rocket, setRocket] = GetAPI("https://localhost:5000/api/rockets/" + id);
 
 	const [showModal, setShowModal] = useState(false);
 	const [disableFields, setDisableFields] = useState(true);
@@ -75,7 +75,7 @@ function DetalheRockets() {
 				body: JSON.stringify(rocketUpdate)
 			};
 			// Simple DELETE request with fetch
-			fetch(`http://localhost:5000/api/rockets/`, requestOptions)
+			fetch(`https://localhost:5000/api/rockets/`, requestOptions)
 				.then((res) => res.json())
 				.then((data) => {
 					alert(data.message);
@@ -90,7 +90,7 @@ function DetalheRockets() {
 				body: JSON.stringify(rocketUpdate)
 			};
 			// Simple DELETE request with fetch
-			fetch(`http://localhost:5000/api/rockets/${rocket._id}`, requestOptions)
+			fetch(`https://localhost:5000/api/rockets/${rocket._id}`, requestOptions)
 				.then((res) => res.json())
 				.then((data) => {
 					alert(data.message);
@@ -101,7 +101,7 @@ function DetalheRockets() {
 
 	const confirmDelete = async () => {
 		// Simple DELETE request with fetch
-		fetch(`http://localhost:5000/api/rockets/${rocket._id}`, {method: 'DELETE'})
+		fetch(`https://localhost:5000/api/rockets/${rocket._id}`, {method: 'DELETE'})
 			.then((res) => res.json())
 			.then((data) => {
 				alert(data.message);

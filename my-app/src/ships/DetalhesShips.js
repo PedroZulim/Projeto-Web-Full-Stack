@@ -79,7 +79,7 @@ function DetalhesShips() {
 
 	const confirmDelete = async () => {
 		// Simple DELETE request with fetch
-		fetch(`http://localhost:5000/api/ships/${ship._id}`, {method: 'DELETE'})
+		fetch(`https://localhost:5000/api/ships/${ship._id}`, {method: 'DELETE'})
 			.then((res) => res.json())
 			.then((data) => {
 				alert(data.message);

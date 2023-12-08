@@ -1,6 +1,3 @@
-import Header from './Header';
-import Footer from "./Footer";
-
 import logo from "../images/Logo-Login.png";
 
 import styled from "styled-components";
@@ -23,6 +20,8 @@ function Login() {
 
     const passwordInputRef  = useRef('');
     const emailInputRef = useRef('');
+
+
 
     return (
         <div className="text-center">

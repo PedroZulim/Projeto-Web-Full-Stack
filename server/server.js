@@ -58,9 +58,10 @@ apiShip.addRoutes(app, config);
 // Adiciona rotas API ROCKET
 apiRockets.addRoutes(app, config);
 
-
+// Iniciar HTTPS server
 var server = https.createServer(config.serverOptions, app);
-
 server.listen(port, () => {
-	console.log("server HTTPS starting on port : " + port)
+	const msg = 'Servidor https na porta ' + port + ' iniciado';
+	console.log(msg)
+	config.logger.info(msg);
 });

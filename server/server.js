@@ -42,7 +42,7 @@ app.use(function(req, res, next) {
 });
 
 
-// --- Rate Limit
+// --- Rate Limiter
 const limiter = rateLimit({
 	windowMs: 15 * 60 * 1000, // 15 minutes
 	limit: 100, // Limit each IP to 100 requests per `window` (here, per 15 minutes).
@@ -60,6 +60,8 @@ apiRockets.addRoutes(app, config);
 
 // Iniciar HTTPS server
 var server = https.createServer(config.serverOptions, app);
+
+//Logs with Winston
 server.listen(port, () => {
 	const msg = 'Servidor https na porta ' + port + ' iniciado';
 	console.log(msg)

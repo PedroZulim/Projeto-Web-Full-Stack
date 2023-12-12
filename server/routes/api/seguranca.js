@@ -18,22 +18,26 @@ exports.addRoutes = function(app, config) {
 	});
 
 // The verify endpoint that checks if a given JWT token is valid
-	app.post('/api/verify', (req, res) => {
-		const tokenHeaderKey = "jwt-token";
-		const authToken = req.headers[tokenHeaderKey];
+	app.post('/api/verify', async (req, res) => {
 		try {
+			//   get the token from the authorization header
+			const token = await request.headers.authorization.split(" ")[1];
+
+			//check if the token matches the supposed origin
+			const decodedToken = await jwt.verify(token, config.jwtSecretKey);
+
 			const verified = jwt.verify(authToken, config.jwtSecretKey);
 			if (verified) {
 				return res
 					.status(200)
-					.json({ status: "logged in", message: "success" });
+					.json({status: "logged in", message: "Login Successful"});
 			} else {
 				// Access Denied
-				return res.status(401).json({ status: "invalid auth", message: "error" });
+				return res.status(401).json({status: "invalid auth", message: "error"});
 			}
 		} catch (error) {
 			// Access Denied
-			return res.status(401).json({ status: "invalid auth", message: "error" });
+			return res.status(401).json({status: "invalid auth", message: "error"});
 		}
 
 	})

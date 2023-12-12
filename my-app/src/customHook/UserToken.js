@@ -12,7 +12,7 @@ const UserToken = () => {
 
 	const saveToken = userToken => {
 		sessionStorage.setItem('token', JSON.stringify(userToken))
-		setToken(userToken.token)
+		setToken(userToken)
 	}
 
 	return {

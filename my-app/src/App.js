@@ -1,11 +1,13 @@
 import React from 'react';
 import Layout from "./template/Layout";
 import {useState, useEffect} from "react";
+import UserToken from "./customHook/UserToken";
 
 
 function App() {
 	const [loggedIn, setLoggedIn] = useState(false)
 	const [email, setEmail] = useState("")
+	const {token, setToken} = UserToken()
 
 	useEffect(() => {
 		// Fetch the user email and token from local storage
@@ -18,24 +20,22 @@ function App() {
 		}
 
 		// If the token exists, verify it with the auth server to see if it is valid
-		fetch("http://localhost:5000/api/verify", {
+		fetch("https://localhost:5000/api/verify", {
 			method: "POST",
-			headers: {
-				'jwt-token': user.token
-			}
+			headers: {"Authorization": `Bearer ${token}`}
 		})
 			.then(r => r.json())
 			.then(r => {
-				setLoggedIn('success' === r.message)
+				setLoggedIn(r.message === "Login Successful")
 				setEmail(user.email || "")
 			})
 	}, [])
 
-    return (
-        <div className="container">
-            <Layout email={email} setEmail={setEmail}  loggedIn={loggedIn} setLoggedIn={setLoggedIn} />
-        </div>
-    );
+	return (
+		<div className="container">
+			<Layout email={email} setEmail={setEmail} loggedIn={loggedIn} setLoggedIn={setLoggedIn}/>
+		</div>
+	);
 }
 
 export default App;

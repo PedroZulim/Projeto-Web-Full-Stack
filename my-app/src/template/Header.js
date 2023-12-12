@@ -25,7 +25,7 @@ function Header(props) {
 		userToken.setToken(null);
 		localStorage.removeItem("user")
 		props.setLoggedIn(false)
-		navigate("/home")
+		navigate("/")
 	}
 
 

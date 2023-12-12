@@ -18,6 +18,7 @@ exports.addRoutes = function (app, config ) {
 				res.status(404).json(resultado);
 			} else {
 				// adicionar websock para avisar todos usuarios.
+				resultado = { "message" : "Document inserted!"};
 				res.status(200).json(resultado);
 			}
 

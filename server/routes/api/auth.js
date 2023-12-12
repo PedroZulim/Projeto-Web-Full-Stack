@@ -20,9 +20,9 @@ var auth = {
 			next();
 
 		} catch (error) {
-			response.status(401).json({
-				error: new Error("Invalid request!"),
-			});
+			resultado = {"message": "Document inserted!",
+				error: new Error("Invalid request!"),};
+			response.status(401).json(resultado);
 		}
 	}
 }

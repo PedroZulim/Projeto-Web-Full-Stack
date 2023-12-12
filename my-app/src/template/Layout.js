@@ -12,7 +12,7 @@ const ContainerBody = styled.body`
 const Layout = (props) => {
     return (
         <BrowserRouter>
-            <Header loggedIn={props.loggedIn} />
+            <Header email={props.email} setEmail={props.setEmail}  loggedIn={props.loggedIn} setLoggedIn={props.setLoggedIn} />
             <ContainerBody>
                 <AppRoutes email={props.email} setEmail={props.setEmail}  loggedIn={props.loggedIn} setLoggedIn={props.setLoggedIn}/>
             </ContainerBody>

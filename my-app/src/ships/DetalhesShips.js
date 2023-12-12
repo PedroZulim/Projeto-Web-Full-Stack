@@ -1,10 +1,11 @@
 import GetAPI from "../customHook/GetAPI";
 import styled from "styled-components";
-import React, {useState} from 'react';
+import React, {useEffect, useState} from 'react';
 import {Link, useNavigate, useParams} from 'react-router-dom';
 import {createPortal} from "react-dom";
 import ConfirmeModal from "../modal/ConfirmeModal";
 import FooterDetails from "../template/FooterDetails";
+import UserToken from "../customHook/UserToken";
 
 const BotaoVoltar = styled.button`
   background-color: #007bff;
@@ -14,8 +15,19 @@ const BotaoVoltar = styled.button`
   border-radius: 4px;
 `;
 
-function DetalhesShips() {
+function DetalhesShips(props) {
+
 	const navigate = useNavigate();
+
+	const {token, setToken} = UserToken();
+
+	useEffect(() => {
+		if (!props.loggedIn) {
+			alert('Usuario nao logado!');
+			navigate("/home")
+		}
+	}, []);
+
 	const {id} = useParams();
 	const [ship, setShip] = GetAPI('https://localhost:5000/api/ships/' + id);
 	const [showModal, setShowModal] = useState(false);
@@ -36,50 +48,53 @@ function DetalhesShips() {
 	}
 
 	const onHandleChange = (e) => {
-		const { id, value } = e.target;
+		const {id, value} = e.target;
 		ship[id] = value;
 		setShip(ship);
 	}
 
 	const salvar = () => {
-			if (id === 'novo') {
-				const shipUpdate = ship;
-				// delete shipUpdate._id;
-				// Call the PutAPI hook with the appropriate URL and object
-				const requestOptions = {
-					method: 'POST',
-					headers: {'Content-Type': 'application/json'},
-					body: JSON.stringify(shipUpdate)
-				};
-				// Simple DELETE request with fetch
-				fetch(`https://localhost:5000/api/ships/`, requestOptions)
-					.then((res) => res.json())
-					.then((data) => {
-						alert(data.message);
-					});
-			} else {
-				const shipUpdate = ship;
-				// delete shipUpdate._id;
-				// Call the PutAPI hook with the appropriate URL and object
-				const requestOptions = {
-					method: 'PUT',
-					headers: {'Content-Type': 'application/json'},
-					body: JSON.stringify(shipUpdate)
-				};
-				// Simple DELETE request with fetch
-				fetch(`https://localhost:5000/api/ships/${ship._id}`, requestOptions)
-					.then((res) => res.json())
-					.then((data) => {
-						alert(data.message);
-					});
-			}
+		if (id === 'novo') {
+			const shipUpdate = ship;
+			// delete shipUpdate._id;
+			// Call the PutAPI hook with the appropriate URL and object
+			const requestOptions = {
+				method: 'POST',
+				headers: {'Content-Type': 'application/json', "Authorization": `Bearer ${token}`},
+				body: JSON.stringify(shipUpdate)
+			};
+			// Simple DELETE request with fetch
+			fetch(`https://localhost:5000/api/ships/`, requestOptions)
+				.then((res) => res.json())
+				.then((data) => {
+					alert(data.message);
+				});
+		} else {
+			const shipUpdate = ship;
+			// delete shipUpdate._id;
+			// Call the PutAPI hook with the appropriate URL and object
+			const requestOptions = {
+				method: 'PUT',
+				headers: {'Content-Type': 'application/json', "Authorization": `Bearer ${token}`},
+				body: JSON.stringify(shipUpdate)
+			};
+			// Simple DELETE request with fetch
+			fetch(`https://localhost:5000/api/ships/${ship._id}`, requestOptions)
+				.then((res) => res.json())
+				.then((data) => {
+					alert(data.message);
+				});
+		}
 	}
 
 
-
 	const confirmDelete = async () => {
+		const requestOptions = {
+			method: 'DELETE',
+			headers: {'Content-Type': 'application/json', "Authorization": `Bearer ${token}`}
+		};
 		// Simple DELETE request with fetch
-		fetch(`https://localhost:5000/api/ships/${ship._id}`, {method: 'DELETE'})
+		fetch(`https://localhost:5000/api/ships/${ship._id}`, requestOptions)
 			.then((res) => res.json())
 			.then((data) => {
 				alert(data.message);
@@ -131,66 +146,66 @@ function DetalhesShips() {
 								<div className="col-3">
 									<label htmlFor="name" className="form-label">Name</label>
 									<input type="text" className="form-control" id="name" disabled={disableFields}
-										   value={ship.name} onChange={onHandleChange} />
+										   value={ship.name} onChange={onHandleChange}/>
 								</div>
 								<div className="col-3">
 									<label htmlFor="model" className="form-label">Model</label>
 									<input type="text" className="form-control" id="model" disabled={disableFields}
-										   value={ship.model} onChange={onHandleChange} />
+										   value={ship.model} onChange={onHandleChange}/>
 								</div>
 								<div className="col-3">
 									<label htmlFor="type" className="form-label">Type</label>
 									<input type="text" className="form-control" id="type" disabled={disableFields}
-										   value={ship.type} onChange={onHandleChange} />
+										   value={ship.type} onChange={onHandleChange}/>
 								</div>
 								<div className="col-3">
 									<label htmlFor="home_port " className="form-label">Home Port</label>
 									<input type="text" className="form-control" id="home_port" disabled={disableFields}
-										   value={ship.home_port} onChange={onHandleChange} />
+										   value={ship.home_port} onChange={onHandleChange}/>
 								</div>
 							</div>
 							<div className='row mt-2'>
 								<div className="col-3">
 									<label htmlFor="year_built" className="form-label">Year Built</label>
 									<input type="text" className="form-control" id="year_built" disabled={disableFields}
-										   value={ship.year_built} onChange={onHandleChange} />
+										   value={ship.year_built} onChange={onHandleChange}/>
 								</div>
 								<div className="col-3">
 									<label htmlFor="status" className="form-label">Status</label>
 									<input type="text" className="form-control" id="status" disabled={disableFields}
-										   value={ship.status} onChange={onHandleChange} />
+										   value={ship.status} onChange={onHandleChange}/>
 								</div>
 								<div className="col-3">
 									<label htmlFor="imo " className="form-label">Imo</label>
 									<input type="text" className="form-control" id="imo " disabled={disableFields}
-										   value={ship.imo} onChange={onHandleChange} />
+										   value={ship.imo} onChange={onHandleChange}/>
 								</div>
 								<div className="col-3">
 									<label htmlFor="mmsi " className="form-label">Mmsi</label>
 									<input type="text" className="form-control" id="mmsi" disabled={disableFields}
-										   value={ship.mmsi} onChange={onHandleChange} />
+										   value={ship.mmsi} onChange={onHandleChange}/>
 								</div>
 							</div>
 							<div className='row mt-2'>
 								<div className="col-3">
 									<label htmlFor="abs" className="form-label">Abs</label>
 									<input type="text" className="form-control" id="abs" disabled={disableFields}
-										   value={ship.abs} onChange={onHandleChange} />
+										   value={ship.abs} onChange={onHandleChange}/>
 								</div>
 								<div className="col-3">
 									<label htmlFor="class" className="form-label">Class</label>
 									<input type="text" className="form-control" id="class" disabled={disableFields}
-										   value={ship.class} onChange={onHandleChange} />
+										   value={ship.class} onChange={onHandleChange}/>
 								</div>
 								<div className="col-3">
 									<label htmlFor="mass_kg " className="form-label">Mass Kg</label>
 									<input type="text" className="form-control" id="mass_kg " disabled={disableFields}
-										   value={ship.mass_kg} onChange={onHandleChange} />
+										   value={ship.mass_kg} onChange={onHandleChange}/>
 								</div>
 								<div className="col-3">
 									<label htmlFor="mass_lbs " className="form-label">Mass Lbs</label>
 									<input type="text" className="form-control" id="mass_lbs" disabled={disableFields}
-										   value={ship.mass_lbs} onChange={onHandleChange} />
+										   value={ship.mass_lbs} onChange={onHandleChange}/>
 								</div>
 							</div>
 							<div className='row mt-2'>
@@ -198,34 +213,34 @@ function DetalhesShips() {
 									<label htmlFor="last_ais_update" className="form-label">Last Ais Update</label>
 									<input type="text" className="form-control" id="last_ais_update"
 										   disabled={disableFields}
-										   value={ship.last_ais_update} onChange={onHandleChange} />
+										   value={ship.last_ais_update} onChange={onHandleChange}/>
 								</div>
 								<div className="col-3">
 									<label htmlFor="legacy_id " className="form-label">Legacy Id</label>
 									<input type="text" className="form-control" id="legacy_id " disabled={disableFields}
-										   value={ship.legacy_id} onChange={onHandleChange} />
+										   value={ship.legacy_id} onChange={onHandleChange}/>
 								</div>
 								<div className="col-3">
 									<label htmlFor="speed_kn " className="form-label">Speed Kn</label>
 									<input type="text" className="form-control" id="speed_kn " disabled={disableFields}
-										   value={ship.speed_kn}onChange={onHandleChange} />
+										   value={ship.speed_kn} onChange={onHandleChange}/>
 								</div>
 								<div className="col-3">
 									<label htmlFor="course_deg " className="form-label">Course Deg</label>
 									<input type="text" className="form-control" id="course_deg" disabled={disableFields}
-										   value={ship.course_deg}onChange={onHandleChange} />
+										   value={ship.course_deg} onChange={onHandleChange}/>
 								</div>
 							</div>
 							<div className='row mt-2'>
 								<div className="col-3">
 									<label htmlFor="latitude" className="form-label">Latitude</label>
 									<input type="text" className="form-control" id="latitude" disabled={disableFields}
-										   value={ship.latitude}onChange={onHandleChange} />
+										   value={ship.latitude} onChange={onHandleChange}/>
 								</div>
 								<div className="col-3">
 									<label htmlFor="longitude" className="form-label">Longitude</label>
 									<input type="text" className="form-control" id="longitude" disabled={disableFields}
-										   value={ship.longitude}onChange={onHandleChange} />
+										   value={ship.longitude} onChange={onHandleChange}/>
 								</div>
 								<div className="col-3">
 									<label htmlFor="link " className="form-label">Marine Traffic</label>
@@ -237,7 +252,7 @@ function DetalhesShips() {
 								<div className="col-3">
 									<label htmlFor="roles" className="form-label">Roles</label>
 									<input type="text" className="form-control" id="roles" disabled={disableFields}
-										   value={ship.roles}onChange={onHandleChange} />
+										   value={ship.roles} onChange={onHandleChange}/>
 								</div>
 							</div>
 							<div className='row mt-2'>

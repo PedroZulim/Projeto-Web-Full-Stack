@@ -1,12 +1,13 @@
 import GetAPI from "../customHook/GetAPI";
 import styled from "styled-components";
-import React, {useState} from "react";
+import React, {useEffect, useState} from "react";
 import {Link, useNavigate, useParams} from "react-router-dom";
 import {createPortal} from "react-dom";
 import ConfirmeModal from "../modal/ConfirmeModal";
 import FooterDetails from "../template/FooterDetails";
 
 import {toast} from 'react-toastify';
+import UserToken from "../customHook/UserToken";
 
 const BotaoVoltar = styled.button`
   background-color: #007bff;
@@ -16,8 +17,20 @@ const BotaoVoltar = styled.button`
   border-radius: 4px;
 `;
 
-function DetalheRockets() {
+function DetalheRockets(props) {
+
+
+	const {token, setToken} = UserToken();
+
 	const navigate = useNavigate();
+
+	useEffect(() => {
+		if (!props.loggedIn) {
+			alert('Usuario nao logado!');
+			navigate("/home")
+		}
+	}, []);
+
 	const {id} = useParams();
 	const [rocket, setRocket] = GetAPI("https://localhost:5000/api/rockets/" + id);
 
@@ -65,13 +78,13 @@ function DetalheRockets() {
 		setRocket(rocket);
 	}
 	const salvar = () => {
-		if(id === 'novo') {
+		if (id === 'novo') {
 			const rocketUpdate = rocket;
 			// delete shipUpdate._id;
 			// Call the PutAPI hook with the appropriate URL and object
 			const requestOptions = {
 				method: 'POST',
-				headers: {'Content-Type': 'application/json'},
+				headers: {'Content-Type': 'application/json', "Authorization": `Bearer ${token}`},
 				body: JSON.stringify(rocketUpdate)
 			};
 			// Simple DELETE request with fetch
@@ -80,13 +93,13 @@ function DetalheRockets() {
 				.then((data) => {
 					alert(data.message);
 				});
-		}else{
+		} else {
 			const rocketUpdate = rocket;
 			// delete rocketUpdate._id;
 			// Call the PutAPI hook with the appropriate URL and object
 			const requestOptions = {
 				method: 'PUT',
-				headers: {'Content-Type': 'application/json'},
+				headers: {'Content-Type': 'application/json', "Authorization": `Bearer ${token}`},
 				body: JSON.stringify(rocketUpdate)
 			};
 			// Simple DELETE request with fetch
@@ -100,8 +113,12 @@ function DetalheRockets() {
 	}
 
 	const confirmDelete = async () => {
+		const requestOptions = {
+			method: 'DELETE',
+			headers: {'Content-Type': 'application/json', "Authorization": `Bearer ${token}`}
+		}
 		// Simple DELETE request with fetch
-		fetch(`https://localhost:5000/api/rockets/${rocket._id}`, {method: 'DELETE'})
+		fetch(`https://localhost:5000/api/rockets/${rocket._id}`, requestOptions)
 			.then((res) => res.json())
 			.then((data) => {
 				alert(data.message);

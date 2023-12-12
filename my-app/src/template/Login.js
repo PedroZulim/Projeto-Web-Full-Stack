@@ -2,7 +2,8 @@ import logo from "../images/Logo-Login.png";
 
 import styled from "styled-components";
 import {useRef} from "react";
-import { useNavigate } from "react-router-dom";
+import {useNavigate} from "react-router-dom";
+import UserToken from "../customHook/UserToken";
 
 const StyledForm = styled.form`
   align-items: center;
@@ -18,6 +19,7 @@ const StyledMain = styled.main`
 
 function Login(props) {
 	const navigate = useNavigate();
+	const userToken = UserToken();
 
 	const passwordInputRef = useRef('');
 	const emailInputRef = useRef('');
@@ -37,7 +39,7 @@ function Login(props) {
 				alert(data.message);
 				if (data.message === "Login Successful") {
 					localStorage.setItem("user", JSON.stringify({email: objLogin.email, token: data.token}))
-					sessionStorage.setItem('token', JSON.stringify(data.token))
+					userToken.setToken(data.token);
 					props.setLoggedIn(true)
 					props.setEmail(objLogin.email)
 					navigate("/")

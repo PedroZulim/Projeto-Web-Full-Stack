@@ -1,6 +1,6 @@
 import GetAPI from "../customHook/GetAPI";
 import styled from "styled-components";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import React, {useEffect, useMemo, useRef, useState} from "react";
 import FooterLista from "../template/FooterLista";
 
@@ -12,7 +12,17 @@ const BotaoDetalhe = styled.button`
   border-radius: 4px;
 `;
 
-function ListaShips() {
+function ListaShips(props) {
+
+	const navigate = useNavigate();
+
+
+	useEffect(() => {
+		if(!props.loggedIn) {
+			alert('Usuario nao logado!');
+			navigate("/home")
+		}}, []);
+
     const [controleAcoes, setControleAcoes] = useState([]);
     const [totalRegistro, setTotalRegistro] = useState([]);
 

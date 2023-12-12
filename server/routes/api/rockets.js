@@ -1,4 +1,5 @@
 const {ObjectID} = require("mongodb");
+const auth = require("./auth");
 
 exports.addRoutes = function (app, config ) {
 	const COLLECTION = 'rockets';
@@ -84,7 +85,7 @@ exports.addRoutes = function (app, config ) {
 		}
 	});
 
-	app.get('/api/rockets', async (req, res,) => {
+	app.get('/api/rockets',auth,  async (req, res,) => {
 		try {
 			query = {};
 			fields = {};

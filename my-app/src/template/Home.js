@@ -1,10 +1,24 @@
 import React from 'react';
+import { useNavigate } from "react-router-dom";
+
 import mars from "../images/mars.png";
 import rocket from "../images/rocket.png";
 import spacecraft from "../images/spacecraft.png";
 
-function Home() {
-    return (
+function Home(props) {
+	const { loggedIn, email } = props
+	const navigate = useNavigate();
+
+	const onButtonClick = () => {
+		if (loggedIn) {
+			localStorage.removeItem("user")
+			props.setLoggedIn(false)
+		} else {
+			navigate("/login")
+		}
+	}
+
+	return (
         <div className='Main'>
             <section id="hero" className="bg-dark text-light text-center py-5">
                 <div className="container">
@@ -12,6 +26,20 @@ function Home() {
                     <p className="lead">SpaceX is a leading aerospace manufacturer and space transportation company.</p>
                 </div>
             </section>
+
+
+			{(loggedIn ? <div>
+				Your email address is {email}
+			</div> :
+
+					<div className={"buttonContainer"}>
+						<input
+							className={"inputButton"}
+							type="button"
+							onClick={onButtonClick}
+							value={loggedIn ? "Log out" : "Log in"} />
+					</div>
+			)}
 
             <section id="about" className="py-5">
                 <div className="container">

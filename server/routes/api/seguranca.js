@@ -1,6 +1,7 @@
 const {ObjectID} = require("mongodb");
 const auth = require("./auth");
-const bcrypt = require("bcrypt");
+const jwt = require('jsonwebtoken')
+// const bcrypt = require("bcrypt");
 
 const COLLECTION = 'users';
 
@@ -16,42 +17,50 @@ exports.addRoutes = function(app, config) {
 		res.send({message: "You are authorized to access me"});
 	});
 
+// The verify endpoint that checks if a given JWT token is valid
+	app.post('/api/verify', (req, res) => {
+		const tokenHeaderKey = "jwt-token";
+		const authToken = req.headers[tokenHeaderKey];
+		try {
+			const verified = jwt.verify(authToken, config.jwtSecretKey);
+			if (verified) {
+				return res
+					.status(200)
+					.json({ status: "logged in", message: "success" });
+			} else {
+				// Access Denied
+				return res.status(401).json({ status: "invalid auth", message: "error" });
+			}
+		} catch (error) {
+			// Access Denied
+			return res.status(401).json({ status: "invalid auth", message: "error" });
+		}
+
+	})
 
 // register endpoint
-	app.post("/api/register", (req, res) => {
-		const email = req.body.password;
-		const password = req.body.email ;
-		// hash the password
-		bcrypt
-			.hash(password, 10)
-			.then((hashedPassword) => {
-				const dbConnection = config.db.collection(COLLECTION);
+	app.post("/api/register", async (req, res) => {
+		const email = req.body.email;
+		const password = req.body.password;
+		hashedPassword = password
+		const dbConnection = config.db.collection(COLLECTION);
 
-				const objNovo = {
-					email: email,
-					password: hashedPassword,
-				};
+		const objNovo = {
+			email: email,
+			password: hashedPassword,
+		};
 
-				let resultado = await
-				dbConnection.insert(objNovo, null);
+		let resultado = await dbConnection.insert(objNovo, null);
 
-				if (resultado.result && resultado.result.ok !== 1) {
-					resultado = '{ "message" : "Document not INSERT 1"}';
-					res.status(404).json(resultado);
-				} else {
-					// adicionar websock para avisar todos usuarios.
-					resultado = {"message": "Document inserted!"};
-					res.status(200).json(resultado);
-				}
+		if (resultado.result && resultado.result.ok !== 1) {
+			resultado = '{ "message" : "Document not INSERT 1"}';
+			res.status(404).json(resultado);
+		} else {
+			// adicionar websock para avisar todos usuarios.
+			resultado = {"message": "Document inserted!"};
+			res.status(200).json(resultado);
+		}
 
-			})
-			// catch error if the password hash isn't successful
-			.catch((e) => {
-				res.status(500).send({
-					message: "Password was not hashed successfully",
-					e,
-				});
-			});
 	});
 
 	app.post("/api/login", async (req, res) => {
@@ -66,17 +75,15 @@ exports.addRoutes = function(app, config) {
 		const user = resultado[0];
 		if (!user) {
 			return res.status(400).send({
-				message: "Usuario não encontrado",
-				error,
+				message: "Usuario não encontrado"
 			});
 		} else {
 			try {
-				passwordCheck = await bcrypt.compare(req.body.password, user.password)
+				passwordCheck = (req.body.password === user.password);
 				// check if password matches
 				if (!passwordCheck) {
 					return res.status(400).send({
-						message: "Senha invalida",
-						error,
+						message: "Senha invalida"
 					});
 				}
 				//   create JWT token
@@ -85,7 +92,7 @@ exports.addRoutes = function(app, config) {
 						userId: user._id,
 						userEmail: user.email,
 					},
-					"RANDOM-TOKEN",
+					config.jwtSecretKey,
 					{expiresIn: "24h"}
 				);
 
@@ -98,7 +105,7 @@ exports.addRoutes = function(app, config) {
 
 			} catch (error) {
 				res.status(404).send({
-					message: "Email nao valido",
+					message: "Email não valido",
 					error,
 				});
 			}

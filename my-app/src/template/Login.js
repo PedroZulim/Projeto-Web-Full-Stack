@@ -35,6 +35,15 @@ function Login(props) {
 			.then((res) => res.json())
 			.then((data) => {
 				alert(data.message);
+				if (data.message === "Login Successful") {
+					localStorage.setItem("user", JSON.stringify({email: objLogin.email, token: data.token}))
+					sessionStorage.setItem('token', JSON.stringify(data.token))
+					props.setLoggedIn(true)
+					props.setEmail(objLogin.email)
+					navigate("/")
+				} else {
+					window.alert("Wrong email or password")
+				}
 			});
 	}
 
@@ -51,14 +60,6 @@ function Login(props) {
 			.then((res) => res.json())
 			.then((data) => {
 				alert(data.message);
-				if ('success' === data.message) {
-					localStorage.setItem("user", JSON.stringify({email: objLogin.email, token: data.token}))
-					props.setLoggedIn(true)
-					props.setEmail(objLogin.email)
-					navigate("/")
-				} else {
-					window.alert("Wrong email or password")
-				}
 			});
 	}
 

@@ -4,7 +4,7 @@ const auth = require("./auth");
 exports.addRoutes = function (app, config ) {
 	const COLLECTION = 'rockets';
 
-	app.post('/api/rockets', async (req, res,) => {
+	app.post('/api/rockets',  auth.checkToken,async (req, res,) => {
 		try {
 			const dbConnection = config.db.collection(COLLECTION);
 
@@ -26,7 +26,7 @@ exports.addRoutes = function (app, config ) {
 		}
 	});
 
-	app.delete('/api/rockets/:id', async (req, res,) => {
+	app.delete('/api/rockets/:id',  auth.checkToken,async (req, res,) => {
 		try {
 			const dbConnection = config.db.collection(COLLECTION);
 			const objID = {_id: new ObjectID(req.params.id)};
@@ -45,7 +45,7 @@ exports.addRoutes = function (app, config ) {
 		}
 	});
 
-	app.put('/api/rockets/:id', async (req, res,) => {
+	app.put('/api/rockets/:id', auth.checkToken, async (req, res,) => {
 		try {
 			const dbConnection = config.db.collection(COLLECTION);
 
@@ -70,7 +70,7 @@ exports.addRoutes = function (app, config ) {
 		}
 	});
 
-	app.get('/api/rockets/:id', async (req, res,) => {
+	app.get('/api/rockets/:id', auth.checkToken, async (req, res,) => {
 		try {
 			query = {_id: new ObjectID(req.params.id)};
 			fields = {};
@@ -85,7 +85,7 @@ exports.addRoutes = function (app, config ) {
 		}
 	});
 
-	app.get('/api/rockets',auth,  async (req, res,) => {
+	app.get('/api/rockets',  auth.checkToken, auth.checkToken, async (req, res,) => {
 		try {
 			query = {};
 			fields = {};

@@ -13,12 +13,10 @@ const config = require('./lib/configuracao');
 const https = require('https');
 const fs = require('fs');
 
-
 const apiSeguranca = require('./routes/api/seguranca');
 const apiShip = require('./routes/api/ships');
 const apiRockets = require('./routes/api/rockets');
-
-
+const auth = require("./routes/api/auth");
 
 app.use(express.urlencoded({extended: true}));
 app.use(express.json());

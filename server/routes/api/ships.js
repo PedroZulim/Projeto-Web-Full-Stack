@@ -6,7 +6,7 @@ const auth = require("./auth");
 exports.addRoutes = function(app, config) {
 	const COLLECTION = 'ships';
 
-	app.post('/api/ships', auth, body('name').isLength({min: 3}), body('year_built').isInt().toInt(), async (req, res,) => {
+	app.post('/api/ships', auth.checkToken, body('name').isLength({min: 3}), body('year_built').isInt().toInt(), async (req, res,) => {
 		try {
 			const validation = validationResult(req);
 			if (!validation.isEmpty()) {
@@ -37,7 +37,7 @@ exports.addRoutes = function(app, config) {
 			res.status(500).json(error);
 		}
 	});
-	app.delete('/api/ships/:id', param('id').isLength({
+	app.delete('/api/ships/:id', auth.checkToken, param('id').isLength({
 		min: 24,
 		max: 24
 	}), async (req, res,) => {
@@ -59,7 +59,7 @@ exports.addRoutes = function(app, config) {
 		}
 	});
 
-	app.put('/api/ships/:id', async (req, res,) => {
+	app.put('/api/ships/:id',  auth.checkToken, async (req, res,) => {
 		try {
 			const dbConnection = config.db.collection(COLLECTION);
 
@@ -85,7 +85,7 @@ exports.addRoutes = function(app, config) {
 		}
 	});
 
-	app.get('/api/ships/:id', async (req, res) => {
+	app.get('/api/ships/:id',  auth.checkToken, async (req, res) => {
 		try {
 			filtro = {_id: new ObjectID(req.params.id)};
 			fields = {};
@@ -100,7 +100,7 @@ exports.addRoutes = function(app, config) {
 		}
 	});
 
-	app.get('/api/ships', async (req, res,) => {
+	app.get('/api/ships',   auth.checkToken, async (req, res,) => {
 		try {
 			filtro = {};
 			fields = {};

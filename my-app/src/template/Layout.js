@@ -9,12 +9,12 @@ const ContainerBody = styled.body`
   margin-top: 10px;
   margin-bottom: 10px;
 `;
-const Layout = () => {
+const Layout = (props) => {
     return (
         <BrowserRouter>
-            <Header/>
+            <Header loggedIn={props.loggedIn} />
             <ContainerBody>
-                <AppRoutes/>
+                <AppRoutes email={props.email} setEmail={props.setEmail}  loggedIn={props.loggedIn} setLoggedIn={props.setLoggedIn}/>
             </ContainerBody>
             <Footer/>
         </BrowserRouter>

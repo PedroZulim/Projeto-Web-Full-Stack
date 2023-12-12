@@ -13,7 +13,7 @@ exports.addRoutes = function(app, config) {
 	});
 
 // authentication endpoint
-	app.get("/api/auth-endpoint", auth, (req, res) => {
+	app.get("/api/auth-endpoint", auth.checkToken, (req, res) => {
 		res.send({message: "You are authorized to access me"});
 	});
 

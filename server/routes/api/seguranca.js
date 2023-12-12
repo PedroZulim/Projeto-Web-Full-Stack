@@ -99,7 +99,7 @@ exports.addRoutes = function(app, config) {
 			} catch (error) {
 				res.status(404).send({
 					message: "Email nao valido",
-					e,
+					error,
 				});
 			}
 		}

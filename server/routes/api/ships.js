@@ -22,6 +22,8 @@ exports.addRoutes = function(app, config) {
 
 			const objNovo = req.body;
 
+			objNovo.name = req.sanitize(objNovo.name);
+
 			let resultado = await
 				dbConnection.insert(objNovo, null);
 

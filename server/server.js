@@ -56,6 +56,10 @@ apiShip.addRoutes(app, config);
 // Adiciona rotas API ROCKET
 apiRockets.addRoutes(app, config);
 
+app.get('/*', (req, res) => {
+	res.sendFile(path.join(config.publicPath, 'index.html'));
+});
+
 // Iniciar HTTPS server
 var server = https.createServer(config.serverOptions, app);
 

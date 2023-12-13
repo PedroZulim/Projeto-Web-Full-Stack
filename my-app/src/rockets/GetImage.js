@@ -1,5 +1,4 @@
 import { useState, useEffect, useRef } from "react";
-import ReactDOM from "react-dom/client";
 
 const GetImage = (listaImages) => {
 

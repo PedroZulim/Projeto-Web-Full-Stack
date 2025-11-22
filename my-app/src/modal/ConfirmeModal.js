@@ -1,8 +1,15 @@
 import React, { useState, useEffect, useRef } from "react";
-import ReactDOM from "react-dom/client";
 import './ConfirmeModal.css'
 
-const ConfirmeModal = ({ onClose}) => {
+const ConfirmeModal = ({ onClose, onConfirm }) => {
+	const handleConfirm = () => {
+		onConfirm(); // Invoke the callback function when confirming
+		onClose();
+	};
+
+	const handleCancel = () => {
+		onClose();
+	};
 	return (
 		<div className="modal" tabIndex="-1">
 			<div className="modal-dialog">
@@ -16,9 +23,12 @@ const ConfirmeModal = ({ onClose}) => {
 						<p>Are you sure you want to remove?</p>
 					</div>
 					<div className="modal-footer">
-						<button type="button" className="btn btn-primary" onClick={() => onClose()}>Confirm
+						<button type="button" className="btn btn-primary" onClick={handleConfirm}>
+							Confirm
 						</button>
-						<button type="button" className="btn btn-warning" onClick={() => onClose()}>Cancel</button>
+						<button type="button" className="btn btn-warning" onClick={handleCancel}>
+							Cancel
+						</button>
 					</div>
 				</div>
 			</div>

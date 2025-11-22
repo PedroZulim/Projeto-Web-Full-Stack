@@ -1,6 +1,6 @@
 import GetAPI from "../customHook/GetAPI";
 import styled from "styled-components";
-import {Link} from "react-router-dom";
+import {Link, useNavigate} from "react-router-dom";
 import React, {useEffect, useMemo, useRef, useState} from "react";
 import FooterLista from "../template/FooterLista";
 
@@ -12,11 +12,21 @@ const BotaoDetalhe = styled.button`
   border-radius: 4px;
 `;
 
-function ListaShips() {
+function ListaShips(props) {
+
+	const navigate = useNavigate();
+
+
+	useEffect(() => {
+		if(!props.loggedIn) {
+			alert('Usuario nao logado!');
+			navigate("/home")
+		}}, []);
+
     const [controleAcoes, setControleAcoes] = useState([]);
     const [totalRegistro, setTotalRegistro] = useState([]);
 
-    const [shipsLista] = GetAPI('https://api.spacexdata.com/v4/ships');
+    const [shipsLista] = GetAPI('https://localhost:5000/api/ships');
 
     // ------ Pagina
     const [page, setPage] = useState(1);
@@ -30,16 +40,17 @@ function ListaShips() {
 
     // -- userRef textoBuscar
     const textoBuscar = useRef('');
-    const onBuscarClick = () => {
-        setPage(1);
-        // forca atualizar lista ships
-        setControleAcoes(!controleAcoes);
-    };
 
     useEffect(() => {
-        // forca atualizar lista ships
+        // forca atualizar lista rocket
         setControleAcoes(!controleAcoes);
     }, [shipsLista]);
+
+    const onBuscarClick = () => {
+        setPage(1);
+        // forca atualizar lista rocket
+        setControleAcoes(!controleAcoes);
+    };
 
     const shipsPaginada = useMemo(() => {
         let listaFiltro = shipsLista;
@@ -81,6 +92,9 @@ function ListaShips() {
                                    ref={textoBuscar}/>
 
                             <button onClick={onBuscarClick} className="mt-2 btn btn-outline-dark">Buscar</button>
+                            <Link to="/spacex/ships/novo">
+                                <button className="mt-2 ms-1 btn btn-outline-dark">Novo</button>
+                            </Link>
                         </th>
                     </tr>
                     <tr>
@@ -93,9 +107,9 @@ function ListaShips() {
                     <tbody>
                     {shipsPaginada.length > 0 ? (
                         shipsPaginada.map(ship => (
-                            <tr key={ship?.id}>
+                            <tr key={ship?._id}>
                                 <td>
-                                    <Link to={ship?.id}>
+                                    <Link to={ship?._id}>
                                         {ship?.name}
                                     </Link>
                                 </td>
